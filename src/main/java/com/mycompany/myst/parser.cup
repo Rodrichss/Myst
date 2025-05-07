@@ -1,0 +1,81 @@
+/* Preliminares del archivo CUP */
+package rpgcompiler;
+import java_cup.runtime.*;
+
+parser code {:
+    // Código adicional del parser si es necesario
+:};
+
+/* Terminales (tokens) */
+terminal String 
+    CHARACTER, ENEMY, QUESTION, DIALOGUE, 
+    HP, MP, ATTACK, DEFENSE, LOOT, REWARD, 
+    OBJECTIVE, SKILL, DAMAGE, MP_COST, GOLD, 
+    OPTION, START, END, STRING, ID;
+
+terminal Integer NUMBER;
+terminal -> ARROW;
+terminal : COLON;
+terminal "" STRING_DELIM; // Para las cadenas entre comillas
+
+/* No terminales */
+non terminal Program program;
+non terminal StatementList statement_list;
+non terminal Statement statement;
+non terminal CharacterDef character_def;
+non terminal EnemyDef enemy_def;
+non terminal QuestDef quest_def;
+non terminal DialogueDef dialogue_def;
+non terminal AttributeList attribute_list;
+non terminal Attribute attribute;
+non terminal OptionList option_list;
+non terminal OptionDef option_def;
+
+/* Precedencias */
+precedence left COLON;
+precedence left ARROW;
+
+/* Gramática */
+start with program;
+
+program ::= statement_list;
+
+statement_list ::= 
+    statement_list statement | 
+    statement;
+
+statement ::= 
+    character_def | 
+    enemy_def | 
+    quest_def | 
+    dialogue_def;
+
+character_def ::= 
+    CHARACTER STRING attribute_list;
+
+enemy_def ::= 
+    ENEMY STRING attribute_list;
+
+quest_def ::= 
+    QUEST STRING attribute_list;
+
+dialogue_def ::= 
+    DIALOGUE STRING STRING option_list;
+
+attribute_list ::= 
+    attribute_list attribute | 
+    attribute;
+
+attribute ::= 
+    ID COLON value;
+
+value ::= 
+    NUMBER | 
+    STRING;
+
+option_list ::= 
+    option_list option_def | 
+    option_def;
+
+option_def ::= 
+    OPTION STRING ARROW ID STRING;
