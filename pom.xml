@@ -9,8 +9,22 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>21</maven.compiler.source>
         <maven.compiler.target>21</maven.compiler.target>
-        <exec.mainClass>com.mycompany.myst.MYST</exec.mainClass>
+        <exec.mainClass>com.mycompany.myst.MainFrame</exec.mainClass>
     </properties>
+    
+    <dependencies>
+        <dependency>
+            <groupId>com.github.vbmacher</groupId>
+            <artifactId>java-cup-runtime</artifactId>
+            <version>11b-20160615-1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>5.8.2 </version>
+            <scope>test</scope>
+        </dependency>
+</dependencies>
     
     <build>
       <plugins>
@@ -26,6 +40,7 @@
           </execution>
         </executions>
       </plugin>
+      
     </plugins>
     </build>
 </project>
