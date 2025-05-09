@@ -6,96 +6,69 @@ package com.mycompany.myst;
 
 /**
  *
- * @author Rodrigo
+ * @author danio
  */
+
 public class Token {
     private int line;
     private int column;
     private String lexeme;
-    private int tokenType;
-    private Object value;
+    private String ER;
+    //private Object value;
 
     // Tipos de token (deben coincidir con los definidos en el flex)
-    public static final int CHARACTER = 1;
-    public static final int ENEMY = 2;
-    public static final int QUESTION = 3;
-    public static final int DIALOGUE = 4;
-    public static final int HP = 5;
-    public static final int MP = 6;
-    public static final int ATTACK = 7;
-    public static final int DEFENSE = 8;
-    public static final int LOOT = 9;
-    public static final int REWARD = 10;
-    public static final int OBJECTIVE = 11;
-    public static final int SKILL = 12;
-    public static final int DAMAGE = 13;
-    public static final int MP_COST = 14;
-    public static final int GOLD = 15;
-    public static final int OPTION = 16;
-    public static final int START = 17;
-    public static final int END = 18;
-    public static final int ARROW = 19;
-    public static final int STRING = 20;
-    public static final int NUMBER = 21;
-    public static final int ID = 22;
-    public static final int COLON = 23;
-    public static final int EOF = 24;
+    private constantes tokenType;
 
-    public Token(int tokenType, String lexeme, int line, int column) {
+    public Token(constantes tokenType, String lexeme, int line, int column, String ER) {
         this.tokenType = tokenType;
         this.lexeme = lexeme;
         this.line = line;
         this.column = column;
-        this.value = null;
-    }
-
-    public Token(int tokenType, String lexeme, Object value, int line, int column) {
-        this(tokenType, lexeme, line, column);
-        this.value = value;
+        this.ER = ER;
     }
 
     // Getters y Setters
-    public int getLine() {
-        return line;
+    public void setTokenType(constantes tokenType) {
+		this.tokenType= tokenType;
     }
 
-    public void setLine(int line) {
-        this.line = line;
-    }
-
-    public int getColumn() {
-        return column;
-    }
-
-    public void setColumn(int column) {
-        this.column = column;
+    public constantes getTokenType() {
+            return this.tokenType;
     }
 
     public String getLexeme() {
-        return lexeme;
+            return this.lexeme;
     }
 
-    public void setLexeme(String lexeme) {
-        this.lexeme = lexeme;
+    public void setLexeme(String lexema) {
+            this.lexeme = lexema;
     }
 
-    public int getTokenType() {
-        return tokenType;
+    public String getER() {
+            return this.ER;
     }
 
-    public void setTokenType(int tokenType) {
-        this.tokenType = tokenType;
+    public void setER(String ER) {
+            this.ER = ER;
     }
 
-    public Object getValue() {
-        return value;
+    public int getLine() {
+            return this.line;
     }
 
-    public void setValue(Object value) {
-        this.value = value;
+    public void setLine(int line) {
+            this.line= line;
     }
 
-    @Override
+    public int getColumn() {
+            return this.column;
+    }
+
+    public void setColumn(int column) {
+            this.column = column;
+    }
+
+    /*@Override
     public String toString() {
         return "Token{" +
                 "line=" + line +
@@ -104,5 +77,5 @@ public class Token {
                 ", tokenType=" + tokenType +
                 ", value=" + value +
                 '}';
-    }
+    }*/
 }
