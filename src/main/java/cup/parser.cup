@@ -1,0 +1,109 @@
+// =======================
+// Sección 1: Encabezado
+// =======================
+package com.mycompany.myst;
+
+import java_cup.runtime.*;
+import com.mycompany.myst.*;
+
+// =======================
+// Sección 2: Código del parser
+// =======================
+parser code {:
+    public void syntax_error(Symbol s) {
+        System.err.println("Error de sintaxis en la línea " + (s.left + 1) + ": token inesperado '" + s.value + "'");
+    }
+:}
+
+// =======================
+// Sección 3: Tokens (terminales) del lexer
+// =======================
+terminal constantes CHARACTER, ENEMY, QUEST, DIALOGUE;
+terminal constantes HP, MP, ATTACK, DEFENSE, LOOT, REWARD, OBJECTIVE;
+terminal constantes SKILL, DAMAGE, MP_COST, GOLD, OPTION, START, END;
+terminal constantes ARROW, COLON, LLO, LLC, STRING, NUMBER, ID;
+//terminal EOF;
+
+// =======================
+// Sección 4: No terminales
+// =======================
+non terminal program, declarations, declaration;
+non terminal character_def, quest_def, dialogue_def;
+non terminal body, attributes, attribute, value;
+
+// =======================
+// Sección 5: Punto de entrada
+// =======================
+start with program;
+
+// =======================
+// Sección 6: Reglas de producción
+// =======================
+
+//program ::= declarations EOF
+program ::= declarations
+{: 
+    TreePrinter.enter("program");
+    TreePrinter.exit();
+:};
+
+declarations ::= /* vacío */
+               | declarations declaration
+               ;
+
+declaration ::= character_def 
+              | quest_def 
+              | dialogue_def
+              ;
+
+character_def ::= CHARACTER ID COLON LLO body LLC
+{: 
+    TreePrinter.enter("character_def: " + ((Symbol)$2).value);
+    TreePrinter.exit();
+:};
+
+quest_def ::= QUEST ID COLON LLO body LLC
+{: 
+    TreePrinter.enter("quest_def: " + ((Symbol)$2).value);
+    TreePrinter.exit();
+:};
+
+dialogue_def ::= DIALOGUE ID COLON STRING
+{: 
+    TreePrinter.enter("dialogue_def: " + ((Symbol)$2).value);
+    TreePrinter.print("text: " + ((Symbol)$4).value);
+    TreePrinter.exit();
+:};
+
+body ::= attributes
+{: 
+    TreePrinter.enter("body");
+    TreePrinter.exit();
+:};
+
+attributes ::= /* vacío */
+             | attributes attribute
+             ;
+
+attribute ::= HP COLON value
+            | MP COLON value
+            | ATTACK COLON value
+            | DEFENSE COLON value
+            | LOOT COLON value
+            | REWARD COLON value
+            | OBJECTIVE COLON value
+            | SKILL COLON value
+            | DAMAGE COLON value
+            | MP_COST COLON value
+            | GOLD COLON value
+{: 
+    TreePrinter.enter("attribute: " + ((Symbol)$1).sym);
+    TreePrinter.exit();
+:};
+
+value ::= STRING
+        | NUMBER
+        | ID
+{: 
+    TreePrinter.print("value: " + ((Symbol)$1).value);
+:};

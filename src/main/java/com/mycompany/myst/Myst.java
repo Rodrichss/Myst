@@ -55,4 +55,18 @@ public class Myst {
         System.out.println("----- Fin ejemplo 1 -----");
     }
     
+    /*public static void main(String[] args) throws Exception {
+        System.out.println("Escribe tu código Myst:");
+
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        String entrada = br.readLine();
+
+        Reader sr = new StringReader(entrada);
+        Lexer lexer = new Lexer(sr);
+        Parser parser = new Parser(lexer);  // No necesitas Sym aquí
+
+        parser.parse();  // Esto activará las acciones del .parser
+    }*/
+
+    
 }

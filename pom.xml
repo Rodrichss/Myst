@@ -18,6 +18,11 @@
 
   <dependencies>
     <dependency>
+      <groupId>com.github.vbmacher</groupId>
+      <artifactId>java-cup-runtime</artifactId>
+      <version>11b-20160615-1</version>
+    </dependency>
+    <dependency>
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter</artifactId>
       <version>5.8.2</version>
@@ -80,6 +85,19 @@
               <goal>generate</goal>
             </goals>
           </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>com.github.vbmacher</groupId>
+        <artifactId>cup-maven-plugin</artifactId>
+        <version>11b-20160615-2</version>
+        <executions>
+          <execution>
+          <phase>generate-sources</phase>
+          <goals>
+            <goal>generate</goal>
+          </goals>
+        </execution>
         </executions>
       </plugin>
     </plugins>
