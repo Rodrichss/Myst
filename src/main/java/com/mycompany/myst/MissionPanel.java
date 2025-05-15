@@ -13,8 +13,16 @@ public class MissionPanel extends javax.swing.JPanel {
     /**
      * Creates new form CharacterPanel
      */
-    public MissionPanel() {
+    public MissionPanel(Mision m) {
         initComponents();
+        
+        lblGoal.setText("Objetivo: " + m.goal);
+        lblReward.setText("Recompensa: " + m.reward);
+    }
+    
+    public void setDatos(Mision m) {
+        lblGoal.setText("Objetivo: " + m.goal);
+        lblReward.setText("Recompensa: " + m.reward);
     }
 
     /**
@@ -26,14 +34,14 @@ public class MissionPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jObjetivo = new javax.swing.JLabel();
-        jRecompensa = new javax.swing.JLabel();
+        lblGoal = new javax.swing.JLabel();
+        lblReward = new javax.swing.JLabel();
 
         setBorder(javax.swing.BorderFactory.createTitledBorder("Misión"));
 
-        jObjetivo.setText("Objetivo: ");
+        lblGoal.setText("Objetivo: ");
 
-        jRecompensa.setText("Recompensa:");
+        lblReward.setText("Recompensa:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -42,24 +50,24 @@ public class MissionPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jObjetivo)
-                    .addComponent(jRecompensa))
+                    .addComponent(lblGoal)
+                    .addComponent(lblReward))
                 .addContainerGap(208, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jObjetivo)
+                .addComponent(lblGoal)
                 .addGap(18, 18, 18)
-                .addComponent(jRecompensa)
+                .addComponent(lblReward)
                 .addContainerGap(60, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jObjetivo;
-    private javax.swing.JLabel jRecompensa;
+    private javax.swing.JLabel lblGoal;
+    private javax.swing.JLabel lblReward;
     // End of variables declaration//GEN-END:variables
 }

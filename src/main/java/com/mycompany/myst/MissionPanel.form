@@ -26,8 +26,8 @@
           <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jObjetivo" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="jRecompensa" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblGoal" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblReward" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="208" max="32767" attributes="0"/>
           </Group>
@@ -37,21 +37,21 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jObjetivo" min="-2" max="-2" attributes="0"/>
+              <Component id="lblGoal" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="jRecompensa" min="-2" max="-2" attributes="0"/>
+              <Component id="lblReward" min="-2" max="-2" attributes="0"/>
               <EmptySpace pref="60" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JLabel" name="jObjetivo">
+    <Component class="javax.swing.JLabel" name="lblGoal">
       <Properties>
         <Property name="text" type="java.lang.String" value="Objetivo: "/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jRecompensa">
+    <Component class="javax.swing.JLabel" name="lblReward">
       <Properties>
         <Property name="text" type="java.lang.String" value="Recompensa:"/>
       </Properties>

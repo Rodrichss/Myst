@@ -4,6 +4,16 @@
  */
 package com.mycompany.myst;
 
+import java.awt.Frame;
+import java.io.IOException;
+import java.io.Reader;
+import java.io.StringReader;
+import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Rodrigo
@@ -39,6 +49,11 @@ public class MainFrame extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jInput);
 
         jExecuteButton.setText("Ejecutar");
+        jExecuteButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jExecuteButtonActionPerformed(evt);
+            }
+        });
 
         jMainTitle.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jMainTitle.setText("MYST");
@@ -80,6 +95,209 @@ public class MainFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jExecuteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jExecuteButtonActionPerformed
+        // TODO add your handling code here:
+        String entrada = jInput.getText();
+        
+        if (entrada.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "No hay código para mostrar.", "Error", JOptionPane.ERROR_MESSAGE);
+        } else {
+            try {
+                Reader reader = new StringReader(entrada);
+                Lexer lexer = new Lexer(reader);
+
+                Token token;
+
+                ArrayList<Personaje> personajes = new ArrayList<>();
+                ArrayList<Enemigo> enemigos = new ArrayList<>();
+
+                while ((token = lexer.next_token()) != null && token.getTokenType() != constantes.EOF) {          
+                    if(token.getTokenType() == constantes.CHARACTER) {
+                        personajes.add(extraerPersonaje(lexer));
+                    } else if (token.getTokenType() == constantes.ENEMY){
+                        enemigos.add(extraerEnemigo(lexer));
+                    }
+                }
+
+                VistaCompleta vista = new VistaCompleta();
+                for(int i = 0; i < personajes.size(); i++) {
+                    CharacterPanel cp = new CharacterPanel(personajes.get(i));
+                    vista.getPanelContenedor().add(cp);
+
+                    if( i < enemigos.size()) {
+                        EnemyPanel ep = new EnemyPanel(enemigos.get(i));
+                        vista.getPanelContenedor().add(ep);
+                    }
+                }
+
+                vista.pack();
+                vista.setVisible(true);
+
+            } catch (Exception e) {
+                e.printStackTrace();
+                JOptionPane.showMessageDialog(this, "Error al analizar el código.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+        
+        
+    }//GEN-LAST:event_jExecuteButtonActionPerformed
+
+    public Personaje extraerPersonaje(Lexer lexer) throws IOException {
+        Personaje personaje = new Personaje();
+
+        Token token = lexer.next_token();  // Esperamos el nombre
+        if (token.getTokenType() == constantes.STRING) {
+            personaje.name = token.getLexeme().replace("\"", "");
+        }
+
+        token = lexer.next_token();  // Esperamos {
+        if (!token.getLexeme().equals("{")) {
+            System.err.println("Error: se esperaba '{'");
+            return personaje;
+        }
+
+        // Leer los atributos hasta encontrar '}'
+        while ((token = lexer.next_token()) != null && !token.getLexeme().equals("}")) {
+            switch (token.getTokenType()) {
+                case MP:
+                    personaje.mp = leerValor(lexer);
+                    break;
+                case HP:
+                    personaje.hp = leerValor(lexer);
+                    break;
+                case ATTACK:
+                    personaje.attack = leerValor(lexer);
+                    break;
+                case DEFENSE:
+                    personaje.defense = leerValor(lexer);
+                    break;
+                case SKILL:
+                    personaje.skill = leerValor(lexer).replace("\"", "");
+                    break;
+                case MP_COST:
+                    personaje.mp_cost = leerValor(lexer);
+                    break;
+                case DAMAGE:
+                    personaje.damage = leerValor(lexer);
+                    break;
+                case GOLD:
+                    personaje.gold = leerValor(lexer);
+                    break;
+                case LOOT:
+                    personaje.loot = leerValor(lexer).replace("\"", "");
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        return personaje;
+    }
+    
+    public Enemigo extraerEnemigo(Lexer lexer) throws IOException {
+        Enemigo enemigo = new Enemigo();
+
+        Token token = lexer.next_token();  // Esperamos el nombre
+        if (token.getTokenType() == constantes.STRING) {
+            enemigo.name = token.getLexeme().replace("\"", "");
+        }
+
+        token = lexer.next_token();  // Esperamos {
+        if (!token.getLexeme().equals("{")) {
+            System.err.println("Error: se esperaba '{'");
+            return enemigo;
+        }
+
+        // Leer los atributos hasta encontrar '}'
+        while ((token = lexer.next_token()) != null && !token.getLexeme().equals("}")) {
+            switch (token.getTokenType()) {
+                case HP:
+                    enemigo.hp = leerValor(lexer);
+                    break;
+                case ATTACK:
+                    enemigo.attack = leerValor(lexer);
+                    break;
+                case DEFENSE:
+                    enemigo.defense = leerValor(lexer);
+                    break;
+                case GOLD:
+                    enemigo.gold = leerValor(lexer);
+                    break;
+                case LOOT:
+                    enemigo.loot = leerValor(lexer).replace("\"", "");
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        return enemigo;
+    }
+
+    private String leerValor(Lexer lexer) throws IOException {
+        Token token = lexer.next_token(); // Esperamos ':'
+        if (!token.getLexeme().equals(":")) {
+            System.err.println("Error: se esperaba ':'");
+            return "undefined";
+        }
+
+        token = lexer.next_token(); // Esperamos el valor
+        return token.getLexeme();
+    }
+
+    
+    /*
+    public Personaje extraerPersonaje(String entrada) {
+        Personaje info = new Personaje();
+
+        Pattern nameP = Pattern.compile("character\\s+\"([^\"]+)\"");
+        Pattern hpP = Pattern.compile("hp\\s*:\\s*(\\d+)");
+        Pattern mpP = Pattern.compile("mp\\s*:\\s*(\\d+)");
+        Pattern sklP = Pattern.compile("skill\\s*:\\s*\"([^\"]+)\"");
+        Pattern sklDamP = Pattern.compile("damage\\s*:\\s*\"([^\"]+)\"");
+        Pattern sklCosP = Pattern.compile("mp_cost\\s*:\\s*\"([^\"]+)\"");
+        Pattern goldP = Pattern.compile("gold\\s*:\\s*(\\d+)");
+        Pattern atkP = Pattern.compile("attack\\s*:\\s*(\\d+)");
+        Pattern defP = Pattern.compile("defense\\s*:\\s*(\\d+)");
+
+        Matcher m;
+
+        m = nameP.matcher(entrada); if (m.find()) info.name = m.group(1);
+        m = hpP.matcher(entrada); if (m.find()) info.hp = m.group(1);
+        m = mpP.matcher(entrada); if (m.find()) info.mp = m.group(1);
+        m = sklP.matcher(entrada); if (m.find()) info.skill = m.group(1);
+        m = sklDamP.matcher(entrada); if (m.find()) info.damage = m.group(1);
+        m = sklCosP.matcher(entrada); if (m.find()) info.mp_cost = m.group(1);
+        m = goldP.matcher(entrada); if (m.find()) info.gold = m.group(1);
+        m = atkP.matcher(entrada); if (m.find()) info.attack = m.group(1);
+        m = defP.matcher(entrada); if (m.find()) info.defense = m.group(1);
+
+        return info;
+    }
+
+    public Enemigo extraerEnemigo(String entrada) {
+        Enemigo enemigo = new Enemigo();
+
+        Pattern nameP = Pattern.compile("enemy\\s+\"([^\"]+)\"");
+        Pattern hpP = Pattern.compile("hp\\s*:\\s*(\\d+)");
+        Pattern atkP = Pattern.compile("attack\\s*:\\s*(\\d+)");
+        Pattern defP = Pattern.compile("defense\\s*:\\s*(\\d+)");
+        Pattern goldP = Pattern.compile("gold\\s*:\\s*(\\d+)");
+        Pattern lootP = Pattern.compile("loot\\s*:\\s*\"([^\"]+)\"");
+
+        Matcher m;
+
+        m = nameP.matcher(entrada); if (m.find()) enemigo.name = m.group(1);
+        m = hpP.matcher(entrada); if (m.find()) enemigo.hp = m.group(1);
+        m = atkP.matcher(entrada); if (m.find()) enemigo.attack = m.group(1);
+        m = defP.matcher(entrada); if (m.find()) enemigo.defense = m.group(1);
+        m = goldP.matcher(entrada); if (m.find()) enemigo.gold = m.group(1);
+        m = lootP.matcher(entrada); if (m.find()) enemigo.loot = m.group(1);
+
+        return enemigo;
+    }
+    */
+    
     /**
      * @param args the command line arguments
      */

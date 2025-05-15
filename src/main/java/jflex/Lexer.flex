@@ -43,7 +43,6 @@ letra = [a-zA-Z]
 <YYINITIAL>\"[^\"]*\"      { return new Token(constantes.STRING, yytext(), yyline, yycolumn, "cadena de texto"); }
 <YYINITIAL>{digito}({digito})*          { return new Token(constantes.NUMBER, yytext(), yyline, yycolumn, "numero"); }
 <YYINITIAL>{letra}({letra}|{digito})* { return new Token(constantes.ID, yytext(), yyline, yycolumn, "id"); }
-[ \t\r\f]     { /* Ignorar espacios en blanco */ }
-\n {yychar=1;}
+[ \t\r\f\n]     { /* Ignorar espacios en blanco */ }
 .               { System.err.println("warning: Unrecognized character '" + yytext()+"' -- ignored" + " at : "+ (yyline+1) + " " + (yycolumn+1) + " " + yychar); }
 

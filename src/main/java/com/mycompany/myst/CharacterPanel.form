@@ -26,26 +26,26 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="103" alignment="0" groupAlignment="1" attributes="0">
-                      <Group type="103" alignment="1" groupAlignment="0" attributes="0">
-                          <Component id="jHP" min="-2" max="-2" attributes="0"/>
-                          <Component id="jNombre" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="1" attributes="0">
-                          <Component id="jMP" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="lblHP" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblNombre" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <Component id="jAtaque" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="jDefensa" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblAtaque" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                      <Component id="lblMP" max="32767" attributes="0"/>
+                      <Component id="lblDefensa" alignment="1" max="32767" attributes="0"/>
+                  </Group>
               </Group>
               <EmptySpace min="-2" pref="97" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jLoot" min="-2" max="-2" attributes="0"/>
-                  <Component id="jGold" min="-2" max="-2" attributes="0"/>
-                  <Component id="jSkill" min="-2" max="-2" attributes="0"/>
-                  <Component id="jDSkill" min="-2" max="-2" attributes="0"/>
-                  <Component id="jCSkill" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblLoot" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblGold" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblSkill" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblSkillDamage" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblSkillCost" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="69" max="32767" attributes="0"/>
           </Group>
@@ -56,28 +56,28 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jNombre" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jSkill" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblNombre" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblSkill" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jHP" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jDSkill" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblHP" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblSkillDamage" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jMP" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jCSkill" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblMP" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblSkillCost" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jAtaque" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jGold" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblAtaque" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblGold" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jDefensa" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jLoot" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblDefensa" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblLoot" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
@@ -85,52 +85,52 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JLabel" name="jNombre">
+    <Component class="javax.swing.JLabel" name="lblNombre">
       <Properties>
         <Property name="text" type="java.lang.String" value="Nombre: "/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jHP">
+    <Component class="javax.swing.JLabel" name="lblHP">
       <Properties>
         <Property name="text" type="java.lang.String" value="HP: "/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jMP">
+    <Component class="javax.swing.JLabel" name="lblMP">
       <Properties>
         <Property name="text" type="java.lang.String" value="MP: "/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jAtaque">
+    <Component class="javax.swing.JLabel" name="lblAtaque">
       <Properties>
         <Property name="text" type="java.lang.String" value="Ataque: "/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jDefensa">
+    <Component class="javax.swing.JLabel" name="lblDefensa">
       <Properties>
         <Property name="text" type="java.lang.String" value="Defensa: "/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jSkill">
+    <Component class="javax.swing.JLabel" name="lblSkill">
       <Properties>
         <Property name="text" type="java.lang.String" value="Skill: "/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jDSkill">
+    <Component class="javax.swing.JLabel" name="lblSkillDamage">
       <Properties>
         <Property name="text" type="java.lang.String" value="Da&#xf1;o Skill: "/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jCSkill">
+    <Component class="javax.swing.JLabel" name="lblSkillCost">
       <Properties>
         <Property name="text" type="java.lang.String" value="Costo Skill: "/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jGold">
+    <Component class="javax.swing.JLabel" name="lblGold">
       <Properties>
         <Property name="text" type="java.lang.String" value="Gold: "/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLoot">
+    <Component class="javax.swing.JLabel" name="lblLoot">
       <Properties>
         <Property name="text" type="java.lang.String" value="Loot: "/>
       </Properties>

@@ -13,8 +13,24 @@ public class EnemyPanel extends javax.swing.JPanel {
     /**
      * Creates new form CharacterPanel
      */
-    public EnemyPanel() {
+    public EnemyPanel(Enemigo en) {
         initComponents();
+        
+        lblNombre.setText("Nombre: " + en.name);
+        lblHP.setText("HP: " + en.hp);
+        lblAtaque.setText("Ataque: " + en.attack);
+        lblDefensa.setText("Defensa: " + en.defense);
+        lblGold.setText("Gold: " + en.gold);
+        lblLoot.setText("Loot: " + en.loot);
+    }
+    
+    public void setDatos(Enemigo en) {
+        lblNombre.setText("Nombre: " + en.name);
+        lblHP.setText("HP: " + en.hp);
+        lblAtaque.setText("Ataque: " + en.attack);
+        lblDefensa.setText("Defensa: " + en.defense);
+        lblGold.setText("Gold: " + en.gold);
+        lblLoot.setText("Loot: " + en.loot);
     }
 
     /**
@@ -26,26 +42,26 @@ public class EnemyPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jNombre = new javax.swing.JLabel();
-        jHP = new javax.swing.JLabel();
-        jAtaque = new javax.swing.JLabel();
-        jDefensa = new javax.swing.JLabel();
-        jGold = new javax.swing.JLabel();
-        jLoot = new javax.swing.JLabel();
+        lblNombre = new javax.swing.JLabel();
+        lblHP = new javax.swing.JLabel();
+        lblAtaque = new javax.swing.JLabel();
+        lblDefensa = new javax.swing.JLabel();
+        lblGold = new javax.swing.JLabel();
+        lblLoot = new javax.swing.JLabel();
 
         setBorder(javax.swing.BorderFactory.createTitledBorder("Enemy"));
 
-        jNombre.setText("Nombre: ");
+        lblNombre.setText("Nombre: ");
 
-        jHP.setText("HP: ");
+        lblHP.setText("HP: ");
 
-        jAtaque.setText("Ataque: ");
+        lblAtaque.setText("Ataque: ");
 
-        jDefensa.setText("Defensa: ");
+        lblDefensa.setText("Defensa: ");
 
-        jGold.setText("Gold: ");
+        lblGold.setText("Gold: ");
 
-        jLoot.setText("Loot: ");
+        lblLoot.setText("Loot: ");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -56,14 +72,14 @@ public class EnemyPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(1, 1, 1)
-                        .addComponent(jNombre))
-                    .addComponent(jGold)
-                    .addComponent(jLoot))
+                        .addComponent(lblNombre))
+                    .addComponent(lblGold)
+                    .addComponent(lblLoot))
                 .addGap(97, 97, 97)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jDefensa)
-                    .addComponent(jAtaque)
-                    .addComponent(jHP))
+                    .addComponent(lblDefensa)
+                    .addComponent(lblAtaque)
+                    .addComponent(lblHP))
                 .addContainerGap(81, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -71,27 +87,27 @@ public class EnemyPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jNombre)
-                    .addComponent(jHP))
+                    .addComponent(lblNombre)
+                    .addComponent(lblHP))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jAtaque)
-                    .addComponent(jGold))
+                    .addComponent(lblAtaque)
+                    .addComponent(lblGold))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLoot)
-                    .addComponent(jDefensa))
+                    .addComponent(lblLoot)
+                    .addComponent(lblDefensa))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jAtaque;
-    private javax.swing.JLabel jDefensa;
-    private javax.swing.JLabel jGold;
-    private javax.swing.JLabel jHP;
-    private javax.swing.JLabel jLoot;
-    private javax.swing.JLabel jNombre;
+    private javax.swing.JLabel lblAtaque;
+    private javax.swing.JLabel lblDefensa;
+    private javax.swing.JLabel lblGold;
+    private javax.swing.JLabel lblHP;
+    private javax.swing.JLabel lblLoot;
+    private javax.swing.JLabel lblNombre;
     // End of variables declaration//GEN-END:variables
 }

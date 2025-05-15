@@ -28,16 +28,16 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
-                      <Component id="jNombre" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblNombre" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="jGold" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="jLoot" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblGold" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblLoot" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="97" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jDefensa" min="-2" max="-2" attributes="0"/>
-                  <Component id="jAtaque" min="-2" max="-2" attributes="0"/>
-                  <Component id="jHP" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblDefensa" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblAtaque" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblHP" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="81" max="32767" attributes="0"/>
           </Group>
@@ -48,18 +48,18 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jNombre" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jHP" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblNombre" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblHP" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jAtaque" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jGold" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblAtaque" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblGold" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jLoot" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jDefensa" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblLoot" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblDefensa" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
@@ -67,32 +67,32 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JLabel" name="jNombre">
+    <Component class="javax.swing.JLabel" name="lblNombre">
       <Properties>
         <Property name="text" type="java.lang.String" value="Nombre: "/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jHP">
+    <Component class="javax.swing.JLabel" name="lblHP">
       <Properties>
         <Property name="text" type="java.lang.String" value="HP: "/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jAtaque">
+    <Component class="javax.swing.JLabel" name="lblAtaque">
       <Properties>
         <Property name="text" type="java.lang.String" value="Ataque: "/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jDefensa">
+    <Component class="javax.swing.JLabel" name="lblDefensa">
       <Properties>
         <Property name="text" type="java.lang.String" value="Defensa: "/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jGold">
+    <Component class="javax.swing.JLabel" name="lblGold">
       <Properties>
         <Property name="text" type="java.lang.String" value="Gold: "/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLoot">
+    <Component class="javax.swing.JLabel" name="lblLoot">
       <Properties>
         <Property name="text" type="java.lang.String" value="Loot: "/>
       </Properties>

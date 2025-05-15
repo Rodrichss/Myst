@@ -13,9 +13,33 @@ public class CharacterPanel extends javax.swing.JPanel {
     /**
      * Creates new form CharacterPanel
      */
-    public CharacterPanel() {
+    public CharacterPanel(Personaje p) {
         initComponents();
+        lblNombre.setText("Nombre: " + p.name);
+        lblHP.setText("HP: " + p.hp);
+        lblMP.setText("MP: " + p.mp);
+        lblAtaque.setText("Ataque: " + p.attack);
+        lblDefensa.setText("Defensa: " + p.defense);
+        lblSkill.setText("Skill: " + p.skill);
+        lblSkillDamage.setText("Daño Skill: " + p.damage);
+        lblSkillCost.setText("Costo Skill: " + p.mp_cost);
+        lblGold.setText("Gold: " + p.gold);
+        lblLoot.setText("Loot: " + p.loot);
     }
+    
+    public void setDatos(Personaje p) {
+        lblNombre.setText("Nombre: " + p.name);
+        lblHP.setText("HP: " + p.hp);
+        lblMP.setText("MP: " + p.mp);
+        lblAtaque.setText("Ataque: " + p.attack);
+        lblDefensa.setText("Defensa: " + p.defense);
+        lblSkill.setText("Skill: " + p.skill);
+        lblSkillDamage.setText("Daño Skill: " + p.damage);
+        lblSkillCost.setText("Costo Skill: " + p.mp_cost);
+        lblGold.setText("Gold: " + p.gold);
+        lblLoot.setText("Loot: " + p.loot);
+    }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -26,38 +50,38 @@ public class CharacterPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jNombre = new javax.swing.JLabel();
-        jHP = new javax.swing.JLabel();
-        jMP = new javax.swing.JLabel();
-        jAtaque = new javax.swing.JLabel();
-        jDefensa = new javax.swing.JLabel();
-        jSkill = new javax.swing.JLabel();
-        jDSkill = new javax.swing.JLabel();
-        jCSkill = new javax.swing.JLabel();
-        jGold = new javax.swing.JLabel();
-        jLoot = new javax.swing.JLabel();
+        lblNombre = new javax.swing.JLabel();
+        lblHP = new javax.swing.JLabel();
+        lblMP = new javax.swing.JLabel();
+        lblAtaque = new javax.swing.JLabel();
+        lblDefensa = new javax.swing.JLabel();
+        lblSkill = new javax.swing.JLabel();
+        lblSkillDamage = new javax.swing.JLabel();
+        lblSkillCost = new javax.swing.JLabel();
+        lblGold = new javax.swing.JLabel();
+        lblLoot = new javax.swing.JLabel();
 
         setBorder(javax.swing.BorderFactory.createTitledBorder("Character"));
 
-        jNombre.setText("Nombre: ");
+        lblNombre.setText("Nombre: ");
 
-        jHP.setText("HP: ");
+        lblHP.setText("HP: ");
 
-        jMP.setText("MP: ");
+        lblMP.setText("MP: ");
 
-        jAtaque.setText("Ataque: ");
+        lblAtaque.setText("Ataque: ");
 
-        jDefensa.setText("Defensa: ");
+        lblDefensa.setText("Defensa: ");
 
-        jSkill.setText("Skill: ");
+        lblSkill.setText("Skill: ");
 
-        jDSkill.setText("Daño Skill: ");
+        lblSkillDamage.setText("Daño Skill: ");
 
-        jCSkill.setText("Costo Skill: ");
+        lblSkillCost.setText("Costo Skill: ");
 
-        jGold.setText("Gold: ");
+        lblGold.setText("Gold: ");
 
-        jLoot.setText("Loot: ");
+        lblLoot.setText("Loot: ");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -66,22 +90,22 @@ public class CharacterPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(1, 1, 1)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jHP)
-                            .addComponent(jNombre))
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jMP)
-                            .addGap(29, 29, 29)))
-                    .addComponent(jAtaque)
-                    .addComponent(jDefensa))
+                            .addComponent(lblHP)
+                            .addComponent(lblNombre)))
+                    .addComponent(lblAtaque)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(lblMP, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblDefensa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGap(97, 97, 97)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLoot)
-                    .addComponent(jGold)
-                    .addComponent(jSkill)
-                    .addComponent(jDSkill)
-                    .addComponent(jCSkill))
+                    .addComponent(lblLoot)
+                    .addComponent(lblGold)
+                    .addComponent(lblSkill)
+                    .addComponent(lblSkillDamage)
+                    .addComponent(lblSkillCost))
                 .addContainerGap(69, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -89,39 +113,39 @@ public class CharacterPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jNombre)
-                    .addComponent(jSkill))
+                    .addComponent(lblNombre)
+                    .addComponent(lblSkill))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jHP)
-                    .addComponent(jDSkill))
+                    .addComponent(lblHP)
+                    .addComponent(lblSkillDamage))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jMP)
-                    .addComponent(jCSkill))
+                    .addComponent(lblMP)
+                    .addComponent(lblSkillCost))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jAtaque)
-                    .addComponent(jGold))
+                    .addComponent(lblAtaque)
+                    .addComponent(lblGold))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jDefensa)
-                    .addComponent(jLoot))
+                    .addComponent(lblDefensa)
+                    .addComponent(lblLoot))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jAtaque;
-    private javax.swing.JLabel jCSkill;
-    private javax.swing.JLabel jDSkill;
-    private javax.swing.JLabel jDefensa;
-    private javax.swing.JLabel jGold;
-    private javax.swing.JLabel jHP;
-    private javax.swing.JLabel jLoot;
-    private javax.swing.JLabel jMP;
-    private javax.swing.JLabel jNombre;
-    private javax.swing.JLabel jSkill;
+    private javax.swing.JLabel lblAtaque;
+    private javax.swing.JLabel lblDefensa;
+    private javax.swing.JLabel lblGold;
+    private javax.swing.JLabel lblHP;
+    private javax.swing.JLabel lblLoot;
+    private javax.swing.JLabel lblMP;
+    private javax.swing.JLabel lblNombre;
+    private javax.swing.JLabel lblSkill;
+    private javax.swing.JLabel lblSkillCost;
+    private javax.swing.JLabel lblSkillDamage;
     // End of variables declaration//GEN-END:variables
 }
