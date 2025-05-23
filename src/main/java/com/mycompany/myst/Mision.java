@@ -9,6 +9,7 @@ package com.mycompany.myst;
  * @author danio
  */
 public class Mision {
+    public String name = "undefined";
     public String goal = "undefined";
     public String reward = "undefined";
 }

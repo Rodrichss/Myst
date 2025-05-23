@@ -20,7 +20,7 @@ public class VistaCompleta extends JFrame {
 
     public VistaCompleta() {
         setTitle("Visualizador de Personajes y Enemigos");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLayout(new BorderLayout());
 
         panelContenedor = new JPanel();

@@ -16,11 +16,13 @@ public class MissionPanel extends javax.swing.JPanel {
     public MissionPanel(Mision m) {
         initComponents();
         
+        lblName.setText("Nombre: " + m.name);
         lblGoal.setText("Objetivo: " + m.goal);
         lblReward.setText("Recompensa: " + m.reward);
     }
     
     public void setDatos(Mision m) {
+        lblName.setText("Nombre: " + m.name);
         lblGoal.setText("Objetivo: " + m.goal);
         lblReward.setText("Recompensa: " + m.reward);
     }
@@ -36,12 +38,15 @@ public class MissionPanel extends javax.swing.JPanel {
 
         lblGoal = new javax.swing.JLabel();
         lblReward = new javax.swing.JLabel();
+        lblName = new javax.swing.JLabel();
 
         setBorder(javax.swing.BorderFactory.createTitledBorder("Misión"));
 
         lblGoal.setText("Objetivo: ");
 
         lblReward.setText("Recompensa:");
+
+        lblName.setText("Nombre: ");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -50,24 +55,28 @@ public class MissionPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblReward)
                     .addComponent(lblGoal)
-                    .addComponent(lblReward))
+                    .addComponent(lblName))
                 .addContainerGap(208, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(8, Short.MAX_VALUE)
+                .addComponent(lblName)
+                .addGap(12, 12, 12)
                 .addComponent(lblGoal)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lblReward)
-                .addContainerGap(60, Short.MAX_VALUE))
+                .addGap(36, 36, 36))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel lblGoal;
+    private javax.swing.JLabel lblName;
     private javax.swing.JLabel lblReward;
     // End of variables declaration//GEN-END:variables
 }

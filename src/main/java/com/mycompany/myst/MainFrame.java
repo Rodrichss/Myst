@@ -110,24 +110,41 @@ public class MainFrame extends javax.swing.JFrame {
 
                 ArrayList<Personaje> personajes = new ArrayList<>();
                 ArrayList<Enemigo> enemigos = new ArrayList<>();
+                ArrayList<Mision> misiones = new ArrayList<>();
 
                 while ((token = lexer.next_token()) != null && token.getTokenType() != constantes.EOF) {          
-                    if(token.getTokenType() == constantes.CHARACTER) {
-                        personajes.add(extraerPersonaje(lexer));
-                    } else if (token.getTokenType() == constantes.ENEMY){
-                        enemigos.add(extraerEnemigo(lexer));
+                    if(null != token.getTokenType()) {
+                        switch (token.getTokenType()) {
+                            case CHARACTER -> personajes.add(extraerPersonaje(lexer));
+                            case ENEMY -> enemigos.add(extraerEnemigo(lexer));
+                            case QUEST -> misiones.add(extraerMision(lexer));
+                            default -> {
+                            }
+                        }
                     }
+                        
                 }
 
                 VistaCompleta vista = new VistaCompleta();
                 for(int i = 0; i < personajes.size(); i++) {
-                    CharacterPanel cp = new CharacterPanel(personajes.get(i));
-                    vista.getPanelContenedor().add(cp);
+                    CharacterPanel characterPanel = new CharacterPanel(personajes.get(i));
+                    vista.getPanelContenedor().add(characterPanel);
 
-                    if( i < enemigos.size()) {
+                    /*if( i < enemigos.size()) {
                         EnemyPanel ep = new EnemyPanel(enemigos.get(i));
                         vista.getPanelContenedor().add(ep);
-                    }
+                    }*/
+                }
+                
+                for(int i = 0; i < enemigos.size(); i++) {
+                    EnemyPanel enemyPanel = new EnemyPanel(enemigos.get(i));
+                    vista.getPanelContenedor().add(enemyPanel);
+                }
+                
+                // LUEGO PONERLOS EN OTRA VISTA 
+                for(int i = 0; i < misiones.size(); i++) {
+                    MissionPanel missionPanel = new MissionPanel(misiones.get(i));
+                    vista.getPanelContenedor().add(missionPanel);
                 }
 
                 vista.pack();
@@ -232,6 +249,37 @@ public class MainFrame extends javax.swing.JFrame {
         }
 
         return enemigo;
+    }
+    
+    public Mision extraerMision(Lexer lexer) throws IOException {
+        Mision mision = new Mision();
+
+        Token token = lexer.next_token();  // Esperamos el nombre
+        if (token.getTokenType() == constantes.STRING) {
+            mision.name = token.getLexeme().replace("\"", "");
+        }
+
+        token = lexer.next_token();  // Esperamos {
+        if (!token.getLexeme().equals("{")) {
+            System.err.println("Error: se esperaba '{'" +  "Linea" + token.getLine());
+            return mision;
+        }
+
+        // Leer los atributos hasta encontrar '}'
+        while ((token = lexer.next_token()) != null && !token.getLexeme().equals("}")) {
+            switch (token.getTokenType()) {
+                case REWARD:
+                    mision.reward = leerValor(lexer).replace("\"", "");
+                    break;
+                case OBJECTIVE:
+                    mision.goal = leerValor(lexer).replace("\"", "");
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        return mision;
     }
 
     private String leerValor(Lexer lexer) throws IOException {
