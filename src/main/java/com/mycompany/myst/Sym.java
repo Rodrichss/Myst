@@ -20,7 +20,7 @@ public class Sym {
   public static final int ID = 26;
   public static final int LLC = 23;
   public static final int STRING = 24;
-  public static final int OBJECTIVE = 12;
+  public static final int GOAL = 12;
   public static final int MP = 7;
   public static final int NUMBER = 25;
   public static final int EOF = 0;
@@ -48,7 +48,7 @@ public class Sym {
   "DEFENSE",
   "LOOT",
   "REWARD",
-  "OBJECTIVE",
+  "GOAL",
   "SKILL",
   "DAMAGE",
   "MP_COST",

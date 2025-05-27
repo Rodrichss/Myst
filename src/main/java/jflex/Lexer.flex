@@ -28,7 +28,7 @@ letra = [a-zA-Z]
 <YYINITIAL>"defense"       { return new Token(constantes.DEFENSE, yytext(), yyline, yycolumn, "defensa"); }
 <YYINITIAL>"loot"          { return new Token(constantes.LOOT, yytext(), yyline, yycolumn, "botín"); }
 <YYINITIAL>"reward"        { return new Token(constantes.REWARD, yytext(), yyline, yycolumn, "recompensa"); }
-<YYINITIAL>"objective"     { return new Token(constantes.OBJECTIVE, yytext(), yyline, yycolumn, "objetivo"); }
+<YYINITIAL>"goal"          { return new Token(constantes.GOAL, yytext(), yyline, yycolumn, "objetivo"); }
 <YYINITIAL>"skill"         { return new Token(constantes.SKILL, yytext(), yyline, yycolumn, "habilidad"); }
 <YYINITIAL>"damage"        { return new Token(constantes.DAMAGE, yytext(), yyline, yycolumn, "daño"); }
 <YYINITIAL>"mp_cost"       { return new Token(constantes.MP_COST, yytext(), yyline, yycolumn, "costo de puntos de magia"); }

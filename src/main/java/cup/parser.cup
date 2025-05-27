@@ -19,7 +19,7 @@ parser code {:
 // Sección 3: Tokens (terminales) del lexer
 // =======================
 terminal constantes CHARACTER, ENEMY, QUEST, DIALOGUE;
-terminal constantes HP, MP, ATTACK, DEFENSE, LOOT, REWARD, OBJECTIVE;
+terminal constantes HP, MP, ATTACK, DEFENSE, LOOT, REWARD, GOAL;
 terminal constantes SKILL, DAMAGE, MP_COST, GOLD, OPTION, START, END;
 terminal constantes ARROW, COLON, LLO, LLC, STRING, NUMBER, ID;
 //terminal EOF;
@@ -91,7 +91,7 @@ attribute ::= HP COLON value
             | DEFENSE COLON value
             | LOOT COLON value
             | REWARD COLON value
-            | OBJECTIVE COLON value
+            | GOAL COLON value
             | SKILL COLON value
             | DAMAGE COLON value
             | MP_COST COLON value

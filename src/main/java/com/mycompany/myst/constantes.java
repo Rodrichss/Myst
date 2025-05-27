@@ -19,7 +19,7 @@ public enum constantes {
     DEFENSE,
     LOOT,
     REWARD,
-    OBJECTIVE,
+    GOAL,
     SKILL,
     DAMAGE,
     MP_COST,

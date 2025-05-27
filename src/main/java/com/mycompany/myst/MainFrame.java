@@ -255,6 +255,7 @@ public class MainFrame extends javax.swing.JFrame {
         Mision mision = new Mision();
 
         Token token = lexer.next_token();  // Esperamos el nombre
+        System.out.println("Token nombre: " + token.getTokenType() + " - " + token.getLexeme());
         if (token.getTokenType() == constantes.STRING) {
             mision.name = token.getLexeme().replace("\"", "");
         }
@@ -267,17 +268,23 @@ public class MainFrame extends javax.swing.JFrame {
 
         // Leer los atributos hasta encontrar '}'
         while ((token = lexer.next_token()) != null && !token.getLexeme().equals("}")) {
+            System.out.println("Token atributo: " + token.getTokenType() + " - " + token.getLexeme());
             switch (token.getTokenType()) {
                 case REWARD:
                     mision.reward = leerValor(lexer).replace("\"", "");
                     break;
-                case OBJECTIVE:
+                case GOAL:
                     mision.goal = leerValor(lexer).replace("\"", "");
+                    System.out.println("Valor goal: " + mision.goal);
                     break;
                 default:
                     break;
             }
         }
+        System.out.println("=== Misión extraída ===");
+    System.out.println("Nombre: " + mision.name);
+    System.out.println("Objetivo: " + mision.goal);
+    System.out.println("Recompensa: " + mision.reward);
 
         return mision;
     }
