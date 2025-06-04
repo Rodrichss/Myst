@@ -26,6 +26,10 @@ public class Token {
         this.column = column;
         this.ER = ER;
     }
+    
+    public Token(){
+        
+    }
 
     // Getters y Setters
     public void setTokenType(constantes tokenType) {

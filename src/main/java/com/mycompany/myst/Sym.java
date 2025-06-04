@@ -35,6 +35,7 @@ public class Sym {
   public static final int DIALOGUE = 5;
   public static final int DAMAGE = 14;
   public static final int MP_COST = 15;
+  public static final int TEXT = 27;
   public static final String[] terminalNames = new String[] {
   "EOF",
   "error",
@@ -62,7 +63,8 @@ public class Sym {
   "LLC",
   "STRING",
   "NUMBER",
-  "ID"
+  "ID",
+  "TEXT"
   };
 }
 

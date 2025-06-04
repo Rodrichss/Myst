@@ -64,13 +64,13 @@ public class Lexer {
   private static final int [] ZZ_CMAP_BLOCKS = zzUnpackcmap_blocks();
 
   private static final String ZZ_CMAP_BLOCKS_PACKED_0 =
-    "\11\0\2\1\1\2\2\1\22\0\1\1\1\0\1\3"+
-    "\12\0\1\4\2\0\12\5\1\6\3\0\1\7\2\0"+
-    "\32\10\4\0\1\11\1\0\1\12\1\10\1\13\1\14"+
-    "\1\15\1\16\1\17\1\20\1\21\1\10\1\22\1\23"+
+    "\11\0\1\1\1\2\1\3\2\1\22\0\1\1\1\0"+
+    "\1\4\12\0\1\5\2\0\12\6\1\7\3\0\1\10"+
+    "\2\0\32\11\4\0\1\12\1\0\1\13\1\11\1\14"+
+    "\1\15\1\16\1\17\1\20\1\21\1\22\1\11\1\23"+
     "\1\24\1\25\1\26\1\27\1\30\1\31\1\32\1\33"+
-    "\1\34\1\10\1\35\1\10\1\36\1\10\1\37\1\0"+
-    "\1\40\7\0\1\2\u01a2\0\2\2\326\0\u0100\2";
+    "\1\34\1\35\1\11\1\36\1\37\1\40\1\11\1\41"+
+    "\1\0\1\42\7\0\1\3\u01a2\0\2\3\326\0\u0100\3";
 
   private static int [] zzUnpackcmap_blocks() {
     int [] result = new int[1024];
@@ -97,15 +97,16 @@ public class Lexer {
   private static final int [] ZZ_ACTION = zzUnpackAction();
 
   private static final String ZZ_ACTION_PACKED_0 =
-    "\1\0\1\1\1\2\2\1\1\3\1\4\15\5\1\6"+
-    "\1\7\1\0\1\10\1\11\7\5\1\12\1\5\1\13"+
-    "\12\5\1\14\4\5\1\0\13\5\1\15\1\16\1\17"+
-    "\1\0\12\5\1\20\1\0\1\5\1\21\1\5\1\22"+
-    "\1\23\1\24\1\5\1\25\2\5\1\0\1\26\1\27"+
-    "\1\5\1\30\1\5\1\31\1\5\1\32\1\33";
+    "\1\0\1\1\1\2\1\3\2\1\1\4\1\5\16\6"+
+    "\1\7\1\10\1\0\1\11\1\12\7\6\1\13\1\6"+
+    "\1\14\13\6\1\15\4\6\1\0\14\6\1\16\1\17"+
+    "\1\20\1\0\5\6\1\21\5\6\1\22\1\0\1\6"+
+    "\1\23\1\6\1\24\1\25\1\26\1\6\1\27\2\6"+
+    "\1\0\1\30\1\31\1\6\1\32\1\6\1\33\1\6"+
+    "\1\34\1\35";
 
   private static int [] zzUnpackAction() {
-    int [] result = new int[98];
+    int [] result = new int[103];
     int offset = 0;
     offset = zzUnpackAction(ZZ_ACTION_PACKED_0, offset, result);
     return result;
@@ -130,22 +131,22 @@ public class Lexer {
   private static final int [] ZZ_ROWMAP = zzUnpackRowMap();
 
   private static final String ZZ_ROWMAP_PACKED_0 =
-    "\0\0\0\41\0\41\0\102\0\143\0\204\0\41\0\245"+
-    "\0\306\0\347\0\u0108\0\u0129\0\u014a\0\u016b\0\u018c\0\u01ad"+
-    "\0\u01ce\0\u01ef\0\u0210\0\u0231\0\41\0\41\0\102\0\41"+
-    "\0\41\0\u0252\0\u0273\0\u0294\0\u02b5\0\u02d6\0\u02f7\0\u0318"+
-    "\0\245\0\u0339\0\u035a\0\u037b\0\u039c\0\u03bd\0\u03de\0\u03ff"+
-    "\0\u0420\0\u0441\0\u0462\0\u0483\0\u04a4\0\245\0\u04c5\0\u04e6"+
-    "\0\u0507\0\u0528\0\u0549\0\u056a\0\u058b\0\u05ac\0\u05cd\0\u05ee"+
-    "\0\u060f\0\u0630\0\u0651\0\u0672\0\u0693\0\u06b4\0\245\0\245"+
-    "\0\245\0\u06d5\0\u06f6\0\u0717\0\u0738\0\u0759\0\u077a\0\u079b"+
-    "\0\u07bc\0\u07dd\0\u07fe\0\u081f\0\245\0\u0840\0\u0861\0\245"+
-    "\0\u0882\0\245\0\245\0\245\0\u08a3\0\245\0\u08c4\0\u08e5"+
-    "\0\u0906\0\245\0\245\0\u0927\0\245\0\u0948\0\41\0\u0969"+
-    "\0\245\0\245";
+    "\0\0\0\43\0\43\0\43\0\106\0\151\0\214\0\43"+
+    "\0\257\0\322\0\365\0\u0118\0\u013b\0\u015e\0\u0181\0\u01a4"+
+    "\0\u01c7\0\u01ea\0\u020d\0\u0230\0\u0253\0\u0276\0\43\0\43"+
+    "\0\106\0\43\0\43\0\u0299\0\u02bc\0\u02df\0\u0302\0\u0325"+
+    "\0\u0348\0\u036b\0\257\0\u038e\0\u03b1\0\u03d4\0\u03f7\0\u041a"+
+    "\0\u043d\0\u0460\0\u0483\0\u04a6\0\u04c9\0\u04ec\0\u050f\0\u0532"+
+    "\0\257\0\u0555\0\u0578\0\u059b\0\u05be\0\u05e1\0\u0604\0\u0627"+
+    "\0\u064a\0\u066d\0\u0690\0\u06b3\0\u06d6\0\u06f9\0\u071c\0\u073f"+
+    "\0\u0762\0\u0785\0\257\0\257\0\257\0\u07a8\0\u07cb\0\u07ee"+
+    "\0\u0811\0\u0834\0\u0857\0\257\0\u087a\0\u089d\0\u08c0\0\u08e3"+
+    "\0\u0906\0\257\0\u0929\0\u094c\0\257\0\u096f\0\257\0\257"+
+    "\0\257\0\u0992\0\257\0\u09b5\0\u09d8\0\u09fb\0\257\0\257"+
+    "\0\u0a1e\0\257\0\u0a41\0\43\0\u0a64\0\257\0\257";
 
   private static int [] zzUnpackRowMap() {
-    int [] result = new int[98];
+    int [] result = new int[103];
     int offset = 0;
     offset = zzUnpackRowMap(ZZ_ROWMAP_PACKED_0, offset, result);
     return result;
@@ -168,80 +169,83 @@ public class Lexer {
   private static final int [] ZZ_TRANS = zzUnpacktrans();
 
   private static final String ZZ_TRANS_PACKED_0 =
-    "\1\2\1\3\1\0\1\4\1\5\1\6\1\7\1\2"+
-    "\1\10\1\2\1\11\1\12\1\13\1\14\1\10\1\15"+
-    "\1\16\2\10\1\17\1\20\1\10\1\21\1\10\1\22"+
-    "\1\23\1\24\4\10\1\25\1\26\41\0\3\27\1\30"+
-    "\35\27\7\0\1\31\36\0\1\6\40\0\1\10\2\0"+
-    "\1\10\1\0\25\10\7\0\1\10\2\0\1\10\1\0"+
-    "\21\10\1\32\3\10\7\0\1\10\2\0\1\10\1\0"+
-    "\6\10\1\33\16\10\7\0\1\10\2\0\1\10\1\0"+
-    "\1\34\2\10\1\35\3\10\1\36\15\10\7\0\1\10"+
-    "\2\0\1\10\1\0\13\10\1\37\11\10\7\0\1\10"+
-    "\2\0\1\10\1\0\14\10\1\40\10\10\7\0\1\10"+
-    "\2\0\1\10\1\0\15\10\1\41\7\10\7\0\1\10"+
-    "\2\0\1\10\1\0\14\10\1\42\10\10\7\0\1\10"+
-    "\2\0\1\10\1\0\15\10\1\43\7\10\7\0\1\10"+
-    "\2\0\1\10\1\0\15\10\1\44\7\10\7\0\1\10"+
-    "\2\0\1\10\1\0\22\10\1\45\2\10\7\0\1\10"+
-    "\2\0\1\10\1\0\3\10\1\46\21\10\7\0\1\10"+
-    "\2\0\1\10\1\0\10\10\1\47\10\10\1\50\3\10"+
-    "\7\0\1\10\2\0\1\10\1\0\21\10\1\51\3\10"+
-    "\7\0\1\10\2\0\1\10\1\0\1\52\24\10\7\0"+
-    "\1\10\2\0\1\10\1\0\12\10\1\53\12\10\7\0"+
-    "\1\10\2\0\1\10\1\0\4\10\1\54\20\10\7\0"+
-    "\1\10\2\0\1\10\1\0\1\55\24\10\7\0\1\10"+
-    "\2\0\1\10\1\0\2\10\1\56\1\57\21\10\7\0"+
-    "\1\10\2\0\1\10\1\0\1\60\10\10\1\61\13\10"+
-    "\7\0\1\10\2\0\1\10\1\0\14\10\1\62\10\10"+
-    "\7\0\1\10\2\0\1\10\1\63\25\10\7\0\1\10"+
-    "\2\0\1\10\1\0\21\10\1\64\3\10\7\0\1\10"+
-    "\2\0\1\10\1\0\3\10\1\65\21\10\7\0\1\10"+
-    "\2\0\1\10\1\0\23\10\1\66\1\10\7\0\1\10"+
-    "\2\0\1\10\1\0\7\10\1\67\15\10\7\0\1\10"+
-    "\2\0\1\10\1\0\1\70\24\10\7\0\1\10\2\0"+
-    "\1\10\1\0\1\71\24\10\7\0\1\10\2\0\1\10"+
-    "\1\0\17\10\1\72\5\10\7\0\1\10\2\0\1\10"+
-    "\1\0\1\73\24\10\7\0\1\10\2\0\1\10\1\0"+
-    "\3\10\1\74\21\10\7\0\1\10\2\0\1\10\1\0"+
-    "\11\10\1\75\13\10\7\0\1\10\2\0\1\10\1\0"+
-    "\12\10\1\76\12\10\7\0\1\10\2\0\1\10\1\0"+
-    "\11\10\1\77\13\10\7\0\1\10\2\0\1\10\1\0"+
-    "\2\10\1\100\22\10\7\0\1\10\2\0\1\10\1\0"+
-    "\21\10\1\101\3\10\15\0\1\102\32\0\1\10\2\0"+
-    "\1\10\1\0\7\10\1\103\15\10\7\0\1\10\2\0"+
-    "\1\10\1\0\20\10\1\104\4\10\7\0\1\10\2\0"+
-    "\1\10\1\0\1\105\24\10\7\0\1\10\2\0\1\10"+
-    "\1\0\11\10\1\106\13\10\7\0\1\10\2\0\1\10"+
-    "\1\0\17\10\1\107\5\10\7\0\1\10\2\0\1\10"+
-    "\1\0\1\10\1\110\23\10\7\0\1\10\2\0\1\10"+
-    "\1\0\1\111\24\10\7\0\1\10\2\0\1\10\1\0"+
-    "\5\10\1\112\17\10\7\0\1\10\2\0\1\10\1\0"+
-    "\13\10\1\113\11\10\7\0\1\10\2\0\1\10\1\0"+
-    "\14\10\1\114\10\10\7\0\1\10\2\0\1\10\1\0"+
-    "\24\10\1\115\30\0\1\116\17\0\1\10\2\0\1\10"+
-    "\1\0\14\10\1\117\10\10\7\0\1\10\2\0\1\10"+
-    "\1\0\21\10\1\120\3\10\7\0\1\10\2\0\1\10"+
-    "\1\0\17\10\1\121\5\10\7\0\1\10\2\0\1\10"+
-    "\1\0\11\10\1\122\13\10\7\0\1\10\2\0\1\10"+
-    "\1\0\21\10\1\123\3\10\7\0\1\10\2\0\1\10"+
-    "\1\0\10\10\1\124\14\10\7\0\1\10\2\0\1\10"+
-    "\1\0\1\10\1\125\23\10\7\0\1\10\2\0\1\10"+
-    "\1\0\3\10\1\126\21\10\7\0\1\10\2\0\1\10"+
-    "\1\0\20\10\1\127\4\10\7\0\1\10\2\0\1\10"+
-    "\1\0\5\10\1\130\17\10\34\0\1\131\13\0\1\10"+
-    "\2\0\1\10\1\0\13\10\1\132\11\10\7\0\1\10"+
-    "\2\0\1\10\1\0\2\10\1\133\22\10\7\0\1\10"+
-    "\2\0\1\10\1\0\21\10\1\134\3\10\7\0\1\10"+
-    "\2\0\1\10\1\0\3\10\1\135\21\10\7\0\1\10"+
-    "\2\0\1\10\1\0\22\10\1\136\2\10\35\0\1\137"+
-    "\12\0\1\10\2\0\1\10\1\0\3\10\1\140\21\10"+
-    "\7\0\1\10\2\0\1\10\1\0\3\10\1\141\21\10"+
-    "\7\0\1\10\2\0\1\10\1\0\17\10\1\142\5\10"+
-    "\2\0";
+    "\1\2\1\3\1\4\1\0\1\5\1\6\1\7\1\10"+
+    "\1\2\1\11\1\2\1\12\1\13\1\14\1\15\1\11"+
+    "\1\16\1\17\2\11\1\20\1\21\1\11\1\22\1\11"+
+    "\1\23\1\24\1\25\1\26\4\11\1\27\1\30\43\0"+
+    "\4\31\1\32\36\31\10\0\1\33\40\0\1\7\42\0"+
+    "\1\11\2\0\1\11\1\0\26\11\10\0\1\11\2\0"+
+    "\1\11\1\0\21\11\1\34\4\11\10\0\1\11\2\0"+
+    "\1\11\1\0\6\11\1\35\17\11\10\0\1\11\2\0"+
+    "\1\11\1\0\1\36\2\11\1\37\3\11\1\40\16\11"+
+    "\10\0\1\11\2\0\1\11\1\0\13\11\1\41\12\11"+
+    "\10\0\1\11\2\0\1\11\1\0\14\11\1\42\11\11"+
+    "\10\0\1\11\2\0\1\11\1\0\15\11\1\43\10\11"+
+    "\10\0\1\11\2\0\1\11\1\0\14\11\1\44\11\11"+
+    "\10\0\1\11\2\0\1\11\1\0\15\11\1\45\10\11"+
+    "\10\0\1\11\2\0\1\11\1\0\15\11\1\46\10\11"+
+    "\10\0\1\11\2\0\1\11\1\0\22\11\1\47\3\11"+
+    "\10\0\1\11\2\0\1\11\1\0\3\11\1\50\22\11"+
+    "\10\0\1\11\2\0\1\11\1\0\10\11\1\51\10\11"+
+    "\1\52\4\11\10\0\1\11\2\0\1\11\1\0\3\11"+
+    "\1\53\22\11\10\0\1\11\2\0\1\11\1\0\21\11"+
+    "\1\54\4\11\10\0\1\11\2\0\1\11\1\0\1\55"+
+    "\25\11\10\0\1\11\2\0\1\11\1\0\12\11\1\56"+
+    "\13\11\10\0\1\11\2\0\1\11\1\0\4\11\1\57"+
+    "\21\11\10\0\1\11\2\0\1\11\1\0\1\60\25\11"+
+    "\10\0\1\11\2\0\1\11\1\0\2\11\1\61\1\62"+
+    "\22\11\10\0\1\11\2\0\1\11\1\0\1\63\10\11"+
+    "\1\64\14\11\10\0\1\11\2\0\1\11\1\0\14\11"+
+    "\1\65\11\11\10\0\1\11\2\0\1\11\1\66\26\11"+
+    "\10\0\1\11\2\0\1\11\1\0\21\11\1\67\4\11"+
+    "\10\0\1\11\2\0\1\11\1\0\3\11\1\70\22\11"+
+    "\10\0\1\11\2\0\1\11\1\0\23\11\1\71\2\11"+
+    "\10\0\1\11\2\0\1\11\1\0\7\11\1\72\16\11"+
+    "\10\0\1\11\2\0\1\11\1\0\1\73\25\11\10\0"+
+    "\1\11\2\0\1\11\1\0\24\11\1\74\1\11\10\0"+
+    "\1\11\2\0\1\11\1\0\1\75\25\11\10\0\1\11"+
+    "\2\0\1\11\1\0\17\11\1\76\6\11\10\0\1\11"+
+    "\2\0\1\11\1\0\1\77\25\11\10\0\1\11\2\0"+
+    "\1\11\1\0\3\11\1\100\22\11\10\0\1\11\2\0"+
+    "\1\11\1\0\11\11\1\101\14\11\10\0\1\11\2\0"+
+    "\1\11\1\0\12\11\1\102\13\11\10\0\1\11\2\0"+
+    "\1\11\1\0\11\11\1\103\14\11\10\0\1\11\2\0"+
+    "\1\11\1\0\2\11\1\104\23\11\10\0\1\11\2\0"+
+    "\1\11\1\0\21\11\1\105\4\11\16\0\1\106\34\0"+
+    "\1\11\2\0\1\11\1\0\7\11\1\107\16\11\10\0"+
+    "\1\11\2\0\1\11\1\0\20\11\1\110\5\11\10\0"+
+    "\1\11\2\0\1\11\1\0\1\111\25\11\10\0\1\11"+
+    "\2\0\1\11\1\0\11\11\1\112\14\11\10\0\1\11"+
+    "\2\0\1\11\1\0\17\11\1\113\6\11\10\0\1\11"+
+    "\2\0\1\11\1\0\21\11\1\114\4\11\10\0\1\11"+
+    "\2\0\1\11\1\0\1\11\1\115\24\11\10\0\1\11"+
+    "\2\0\1\11\1\0\1\116\25\11\10\0\1\11\2\0"+
+    "\1\11\1\0\5\11\1\117\20\11\10\0\1\11\2\0"+
+    "\1\11\1\0\13\11\1\120\12\11\10\0\1\11\2\0"+
+    "\1\11\1\0\14\11\1\121\11\11\10\0\1\11\2\0"+
+    "\1\11\1\0\25\11\1\122\31\0\1\123\21\0\1\11"+
+    "\2\0\1\11\1\0\14\11\1\124\11\11\10\0\1\11"+
+    "\2\0\1\11\1\0\21\11\1\125\4\11\10\0\1\11"+
+    "\2\0\1\11\1\0\17\11\1\126\6\11\10\0\1\11"+
+    "\2\0\1\11\1\0\11\11\1\127\14\11\10\0\1\11"+
+    "\2\0\1\11\1\0\21\11\1\130\4\11\10\0\1\11"+
+    "\2\0\1\11\1\0\10\11\1\131\15\11\10\0\1\11"+
+    "\2\0\1\11\1\0\1\11\1\132\24\11\10\0\1\11"+
+    "\2\0\1\11\1\0\3\11\1\133\22\11\10\0\1\11"+
+    "\2\0\1\11\1\0\20\11\1\134\5\11\10\0\1\11"+
+    "\2\0\1\11\1\0\5\11\1\135\20\11\35\0\1\136"+
+    "\15\0\1\11\2\0\1\11\1\0\13\11\1\137\12\11"+
+    "\10\0\1\11\2\0\1\11\1\0\2\11\1\140\23\11"+
+    "\10\0\1\11\2\0\1\11\1\0\21\11\1\141\4\11"+
+    "\10\0\1\11\2\0\1\11\1\0\3\11\1\142\22\11"+
+    "\10\0\1\11\2\0\1\11\1\0\22\11\1\143\3\11"+
+    "\36\0\1\144\14\0\1\11\2\0\1\11\1\0\3\11"+
+    "\1\145\22\11\10\0\1\11\2\0\1\11\1\0\3\11"+
+    "\1\146\22\11\10\0\1\11\2\0\1\11\1\0\17\11"+
+    "\1\147\6\11\2\0";
 
   private static int [] zzUnpacktrans() {
-    int [] result = new int[2442];
+    int [] result = new int[2695];
     int offset = 0;
     offset = zzUnpacktrans(ZZ_TRANS_PACKED_0, offset, result);
     return result;
@@ -284,12 +288,12 @@ public class Lexer {
   private static final int [] ZZ_ATTRIBUTE = zzUnpackAttribute();
 
   private static final String ZZ_ATTRIBUTE_PACKED_0 =
-    "\1\0\2\11\3\1\1\11\15\1\2\11\1\0\2\11"+
-    "\31\1\1\0\16\1\1\0\13\1\1\0\12\1\1\0"+
+    "\1\0\3\11\3\1\1\11\16\1\2\11\1\0\2\11"+
+    "\32\1\1\0\17\1\1\0\14\1\1\0\12\1\1\0"+
     "\5\1\1\11\3\1";
 
   private static int [] zzUnpackAttribute() {
-    int [] result = new int[98];
+    int [] result = new int[103];
     int offset = 0;
     offset = zzUnpackAttribute(ZZ_ATTRIBUTE_PACKED_0, offset, result);
     return result;
@@ -727,137 +731,147 @@ public class Lexer {
             { System.err.println("warning: Unrecognized character '" + yytext()+"' -- ignored" + " at : "+ (yyline+1) + " " + (yycolumn+1) + " " + yychar);
             }
           // fall through
-          case 28: break;
-          case 2:
-            { /* Ignorar espacios en blanco */
-            }
-          // fall through
-          case 29: break;
-          case 3:
-            { return new Token(constantes.NUMBER, yytext(), yyline, yycolumn, "numero");
-            }
-          // fall through
           case 30: break;
-          case 4:
-            { return new Token(constantes.COLON, yytext(), yyline, yycolumn, ":");
+          case 2:
+            { yycolumn++;
             }
           // fall through
           case 31: break;
-          case 5:
-            { return new Token(constantes.ID, yytext(), yyline, yycolumn, "id");
+          case 3:
+            { yyline++; yycolumn = 1;
             }
           // fall through
           case 32: break;
-          case 6:
-            { return new Token(constantes.LLO, yytext(), yyline, yycolumn, "{");
+          case 4:
+            { return new Token(constantes.NUMBER, yytext(), yyline, yycolumn, "numero");
             }
           // fall through
           case 33: break;
-          case 7:
-            { return new Token(constantes.LLC, yytext(), yyline, yycolumn, "}");
+          case 5:
+            { return new Token(constantes.COLON, yytext(), yyline, yycolumn, ":");
             }
           // fall through
           case 34: break;
-          case 8:
-            { return new Token(constantes.STRING, yytext(), yyline, yycolumn, "cadena de texto");
+          case 6:
+            { return new Token(constantes.ID, yytext(), yyline, yycolumn, "id");
             }
           // fall through
           case 35: break;
-          case 9:
-            { return new Token(constantes.ARROW, yytext(), yyline, yycolumn, "->");
+          case 7:
+            { return new Token(constantes.LLO, yytext(), yyline, yycolumn, "{");
             }
           // fall through
           case 36: break;
-          case 10:
-            { return new Token(constantes.HP, yytext(), yyline, yycolumn, "puntos de salud");
+          case 8:
+            { return new Token(constantes.LLC, yytext(), yyline, yycolumn, "}");
             }
           // fall through
           case 37: break;
-          case 11:
-            { return new Token(constantes.MP, yytext(), yyline, yycolumn, "puntos de magia");
+          case 9:
+            { return new Token(constantes.STRING, yytext(), yyline, yycolumn, "cadena de texto");
             }
           // fall through
           case 38: break;
-          case 12:
-            { return new Token(constantes.END, yytext(), yyline, yycolumn, "fin");
+          case 10:
+            { return new Token(constantes.ARROW, yytext(), yyline, yycolumn, "->");
             }
           // fall through
           case 39: break;
-          case 13:
-            { return new Token(constantes.GOAL, yytext(), yyline, yycolumn, "objetivo");
+          case 11:
+            { return new Token(constantes.HP, yytext(), yyline, yycolumn, "puntos de salud");
             }
           // fall through
           case 40: break;
-          case 14:
-            { return new Token(constantes.GOLD, yytext(), yyline, yycolumn, "oro");
+          case 12:
+            { return new Token(constantes.MP, yytext(), yyline, yycolumn, "puntos de magia");
             }
           // fall through
           case 41: break;
-          case 15:
-            { return new Token(constantes.LOOT, yytext(), yyline, yycolumn, "botín");
+          case 13:
+            { return new Token(constantes.END, yytext(), yyline, yycolumn, "fin");
             }
           // fall through
           case 42: break;
-          case 16:
-            { return new Token(constantes.ENEMY, yytext(), yyline, yycolumn, "enemigo");
+          case 14:
+            { return new Token(constantes.GOAL, yytext(), yyline, yycolumn, "objetivo");
             }
           // fall through
           case 43: break;
-          case 17:
-            { return new Token(constantes.QUEST, yytext(), yyline, yycolumn, "mision");
+          case 15:
+            { return new Token(constantes.GOLD, yytext(), yyline, yycolumn, "oro");
             }
           // fall through
           case 44: break;
-          case 18:
-            { return new Token(constantes.SKILL, yytext(), yyline, yycolumn, "habilidad");
+          case 16:
+            { return new Token(constantes.LOOT, yytext(), yyline, yycolumn, "botín");
             }
           // fall through
           case 45: break;
-          case 19:
-            { return new Token(constantes.START, yytext(), yyline, yycolumn, "inicio");
+          case 17:
+            { return new Token(constantes.TEXT, yytext(), yyline, yycolumn, "texto");
             }
           // fall through
           case 46: break;
-          case 20:
-            { return new Token(constantes.ATTACK, yytext(), yyline, yycolumn, "ataque");
+          case 18:
+            { return new Token(constantes.ENEMY, yytext(), yyline, yycolumn, "enemigo");
             }
           // fall through
           case 47: break;
-          case 21:
-            { return new Token(constantes.DAMAGE, yytext(), yyline, yycolumn, "daño");
+          case 19:
+            { return new Token(constantes.QUEST, yytext(), yyline, yycolumn, "mision");
             }
           // fall through
           case 48: break;
-          case 22:
-            { return new Token(constantes.OPTION, yytext(), yyline, yycolumn, "opcion");
+          case 20:
+            { return new Token(constantes.SKILL, yytext(), yyline, yycolumn, "habilidad");
             }
           // fall through
           case 49: break;
-          case 23:
-            { return new Token(constantes.REWARD, yytext(), yyline, yycolumn, "recompensa");
+          case 21:
+            { return new Token(constantes.START, yytext(), yyline, yycolumn, "inicio");
             }
           // fall through
           case 50: break;
-          case 24:
-            { return new Token(constantes.DEFENSE, yytext(), yyline, yycolumn, "defensa");
+          case 22:
+            { return new Token(constantes.ATTACK, yytext(), yyline, yycolumn, "ataque");
             }
           // fall through
           case 51: break;
-          case 25:
-            { return new Token(constantes.MP_COST, yytext(), yyline, yycolumn, "costo de puntos de magia");
+          case 23:
+            { return new Token(constantes.DAMAGE, yytext(), yyline, yycolumn, "daño");
             }
           // fall through
           case 52: break;
-          case 26:
-            { return new Token(constantes.DIALOGUE, yytext(), yyline, yycolumn, "dialogo");
+          case 24:
+            { return new Token(constantes.OPTION, yytext(), yyline, yycolumn, "opcion");
             }
           // fall through
           case 53: break;
-          case 27:
-            { return new Token(constantes.CHARACTER, yytext(), yyline, yycolumn, "personaje");
+          case 25:
+            { return new Token(constantes.REWARD, yytext(), yyline, yycolumn, "recompensa");
             }
           // fall through
           case 54: break;
+          case 26:
+            { return new Token(constantes.DEFENSE, yytext(), yyline, yycolumn, "defensa");
+            }
+          // fall through
+          case 55: break;
+          case 27:
+            { return new Token(constantes.MP_COST, yytext(), yyline, yycolumn, "costo de puntos de magia");
+            }
+          // fall through
+          case 56: break;
+          case 28:
+            { return new Token(constantes.DIALOGUE, yytext(), yyline, yycolumn, "dialogo");
+            }
+          // fall through
+          case 57: break;
+          case 29:
+            { return new Token(constantes.CHARACTER, yytext(), yyline, yycolumn, "personaje");
+            }
+          // fall through
+          case 58: break;
           default:
             zzScanError(ZZ_NO_MATCH);
         }

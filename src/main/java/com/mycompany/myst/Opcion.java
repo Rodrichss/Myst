@@ -4,14 +4,11 @@
  */
 package com.mycompany.myst;
 
-import java.util.List;
-
 /**
  *
- * @author danio
+ * @author Rodrigo
  */
-public class Dialogo {
-    public String name = "undefined";
+public class Opcion {
     public String text = "undefined";
-    public List<Opcion> options;
+    public String destino = "undefined";
 }

@@ -34,6 +34,7 @@ letra = [a-zA-Z]
 <YYINITIAL>"mp_cost"       { return new Token(constantes.MP_COST, yytext(), yyline, yycolumn, "costo de puntos de magia"); }
 <YYINITIAL>"gold"          { return new Token(constantes.GOLD, yytext(), yyline, yycolumn, "oro"); }
 <YYINITIAL>"option"        { return new Token(constantes.OPTION, yytext(), yyline, yycolumn, "opcion"); }
+<YYINITIAL>"text"          { return new Token(constantes.TEXT, yytext(), yyline, yycolumn, "texto"); }
 <YYINITIAL>"start"         { return new Token(constantes.START, yytext(), yyline, yycolumn, "inicio"); }
 <YYINITIAL>"end"           { return new Token(constantes.END, yytext(), yyline, yycolumn, "fin"); }
 <YYINITIAL>"->"            { return new Token(constantes.ARROW, yytext(), yyline, yycolumn, "->"); }
@@ -43,6 +44,7 @@ letra = [a-zA-Z]
 <YYINITIAL>\"[^\"]*\"      { return new Token(constantes.STRING, yytext(), yyline, yycolumn, "cadena de texto"); }
 <YYINITIAL>{digito}({digito})*          { return new Token(constantes.NUMBER, yytext(), yyline, yycolumn, "numero"); }
 <YYINITIAL>{letra}({letra}|{digito})* { return new Token(constantes.ID, yytext(), yyline, yycolumn, "id"); }
-[ \t\r\f\n]     { /* Ignorar espacios en blanco */ }
+[ \t\r\f]     { yycolumn++; }
+\n              { yyline++; yycolumn = 1; }
 .               { System.err.println("warning: Unrecognized character '" + yytext()+"' -- ignored" + " at : "+ (yyline+1) + " " + (yycolumn+1) + " " + yychar); }
 

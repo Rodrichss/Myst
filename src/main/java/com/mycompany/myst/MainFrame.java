@@ -4,13 +4,22 @@
  */
 package com.mycompany.myst;
 
+import static com.mycompany.myst.constantes.CHARACTER;
+import static com.mycompany.myst.constantes.ENEMY;
+import static com.mycompany.myst.constantes.QUEST;
 import java.awt.Frame;
 import java.io.IOException;
 import java.io.Reader;
 import java.io.StringReader;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -111,29 +120,69 @@ public class MainFrame extends javax.swing.JFrame {
                 ArrayList<Personaje> personajes = new ArrayList<>();
                 ArrayList<Enemigo> enemigos = new ArrayList<>();
                 ArrayList<Mision> misiones = new ArrayList<>();
+                Set<String> misionesReferenciadas = new HashSet<>();
+                /*for (Dialogo d : listaDialogos) {
+                    misionesReferenciadas.addAll(d.options.values());
+                }*/
 
-                while ((token = lexer.next_token()) != null && token.getTokenType() != constantes.EOF) {          
-                    if(null != token.getTokenType()) {
+                List<Mision> misionesIndependientes = misiones.stream()
+                    .filter(m -> !misionesReferenciadas.contains(m.name))
+                    .collect(Collectors.toList());
+                
+                boolean error = false;
+                String mensajeError = "";
+                while ((token = lexer.next_token()) != null && token.getTokenType() != constantes.EOF) {
+                    
+                    try {
                         switch (token.getTokenType()) {
                             case CHARACTER -> personajes.add(extraerPersonaje(lexer));
                             case ENEMY -> enemigos.add(extraerEnemigo(lexer));
                             case QUEST -> misiones.add(extraerMision(lexer));
-                            default -> {
+                            default -> { 
+                                mensajeError = "Error en la línea " + (token.getLine() + 1) + ": Token inesperado '" + token.getLexeme() + "'";
+                                JOptionPane.showMessageDialog(this, "Error en la línea " + (token.getLine()+1), 
+                                        "Error al analizar el código.", JOptionPane.ERROR_MESSAGE);
+                                error = true;
+                                break;
                             }
                         }
+                    } catch(Exception e){
+                        mensajeError = "Error en la línea " + (token != null ? token.getLine() + 1 : "desconocida") + ": " + e.getMessage();
+                        error = true;
                     }
-                        
+                    if(error) break;
                 }
-
+                if (error) {
+                JOptionPane.showMessageDialog(this, mensajeError, 
+                        "Error al analizar el código.", JOptionPane.ERROR_MESSAGE);
+                }else{
+                    VistaCompleta vista = new VistaCompleta();
+                    
+                    for (Personaje p : personajes) {
+                    CharacterPanel characterPanel = new CharacterPanel(p);
+                    vista.getPanelContenedor().add(characterPanel);
+                    }
+                    
+                    for (Enemigo e : enemigos) {
+                    EnemyPanel enemyPanel = new EnemyPanel(e);
+                    vista.getPanelContenedor().add(enemyPanel);
+                    }
+                    
+                    for (Mision m : misiones) {
+                    MissionPanel missionPanel = new MissionPanel(m);
+                    vista.getPanelContenedor().add(missionPanel);
+                    }
+                    
+                    vista.pack();
+                    vista.setVisible(true);
+                    
+                }
+                
+                /*
                 VistaCompleta vista = new VistaCompleta();
                 for(int i = 0; i < personajes.size(); i++) {
                     CharacterPanel characterPanel = new CharacterPanel(personajes.get(i));
                     vista.getPanelContenedor().add(characterPanel);
-
-                    /*if( i < enemigos.size()) {
-                        EnemyPanel ep = new EnemyPanel(enemigos.get(i));
-                        vista.getPanelContenedor().add(ep);
-                    }*/
                 }
                 
                 for(int i = 0; i < enemigos.size(); i++) {
@@ -146,13 +195,21 @@ public class MainFrame extends javax.swing.JFrame {
                     MissionPanel missionPanel = new MissionPanel(misiones.get(i));
                     vista.getPanelContenedor().add(missionPanel);
                 }
-
-                vista.pack();
-                vista.setVisible(true);
+                
+                //VistaCompleta vistaMision = new VistaCompleta();
+                /*for (Mision m : listaMisionesIndependientes) {
+                    vistaMision.getPanelContenedor().add(new MissionPanel(m));
+                    vistaMision.pack();
+                    vistaMision.setVisible(true);
+                }*/
+                /*if(!error){
+                    vista.pack();
+                    vista.setVisible(true);
+                }*/
 
             } catch (Exception e) {
                 e.printStackTrace();
-                JOptionPane.showMessageDialog(this, "Error al analizar el código.", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Error al analizar el código: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
         
@@ -287,6 +344,53 @@ public class MainFrame extends javax.swing.JFrame {
     System.out.println("Recompensa: " + mision.reward);
 
         return mision;
+    }
+    
+    public Dialogo extraerDialogo(Lexer lexer) throws IOException {
+        Dialogo dialogo = new Dialogo();
+        
+        Token token = lexer.next_token();
+        if (token.getTokenType() == constantes.STRING) {
+            dialogo.name = (token.getLexeme().replace("\"", ""));
+        }
+
+        token = lexer.next_token();
+        if (!token.getLexeme().equals("{")) {
+            throw new IOException("Se esperaba '{' en línea " + token.getLine());
+        }
+        
+         /*dialogo.options = new LinkedHashMap<>();
+
+        while ((token = lexer.next_token()) != null && !token.getLexeme().equals("}")) {
+            switch (token.getTokenType()) {
+                case TEXT:
+                    dialogo.text = leerValor(lexer).replace("\"", "");
+                    break;
+                case OPTION:
+                    String optionText = leerValor(lexer).replace("\"", "");
+                    
+                    token = lexer.next_token();  // Ver si viene ->
+                    if (token.getLexeme().equals("->")) {
+                        // Leer misión vinculada
+                        String missionName = leerValor(lexer).replace("\"", "");
+                        dialogo.options.put(optionText, missionName);
+                    } else {
+                        // Opción sin misión (simple)
+                        dialogo.options.put(optionText, null);
+                    }
+                    break;
+            }
+        }
+        
+        System.out.println("=== Diálogo extraído ===");
+        System.out.println("Nombre: " + dialogo.name);
+        System.out.println("Texto: " + dialogo.text);
+        System.out.println("Opciones:");
+        for (Map.Entry<String, String> entry : dialogo.options.entrySet()) {
+            System.out.println("- Opción: " + entry.getKey() + " -> " + entry.getValue());
+        }
+        */
+        return dialogo;
     }
 
     private String leerValor(Lexer lexer) throws IOException {

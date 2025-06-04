@@ -25,6 +25,7 @@ public enum constantes {
     MP_COST,
     GOLD,
     OPTION,
+    TEXT,
     START,
     END,
     ARROW,

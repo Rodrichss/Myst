@@ -4,17 +4,50 @@
  */
 package com.mycompany.myst;
 
+import java.util.Map;
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Rodrigo
  */
 public class DialogPanel extends javax.swing.JPanel {
-
+    
     /**
      * Creates new form CharacterPanel
+     * @param dialogue
+     * @param misiones
      */
-    public DialogPanel() {
-        initComponents();
+    public DialogPanel(Dialogo dialogue, Map<String, Mision> misiones) {
+        //initComponents();
+        //setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        add(new JLabel("Nombre: " + (dialogue.name != null ? dialogue.name : "undefined")));
+        add(new JLabel("Texto: " + (dialogue.text != null ? dialogue.text : "undefined")));
+
+        /*for (Map.Entry<String, String> opcion : dialogue.options.entrySet()) {
+            String label = opcion.getKey();
+            String misionReferida = opcion.getValue();
+
+            JButton boton = new JButton(label);
+            boton.addActionListener(e -> {
+                if (misiones.containsKey(misionReferida)) {
+                    Mision mision = misiones.get(misionReferida);
+                    MissionPanel mp = new MissionPanel(mision);
+                    VistaCompleta vc = new VistaCompleta();
+                    vc.getPanelContenedor().add(mp);
+                    vc.pack();
+                    vc.setVisible(true);
+                } else {
+                    JOptionPane.showMessageDialog(this, "La misión '" + misionReferida + "' no existe.", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            });
+
+            add(boton);
+        }*/
+        
     }
 
     /**
@@ -26,13 +59,13 @@ public class DialogPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jDialog = new javax.swing.JLabel();
+        lblTexto = new javax.swing.JLabel();
         jOpcion1 = new javax.swing.JButton();
         jOpcion2 = new javax.swing.JButton();
 
         setBorder(javax.swing.BorderFactory.createTitledBorder("Dialog"));
 
-        jDialog.setText("Gracias por salvar a nuestro pueblo!!");
+        lblTexto.setText("Gracias por salvar a nuestro pueblo!!");
 
         jOpcion1.setText("Opción 1");
         jOpcion1.addActionListener(new java.awt.event.ActionListener() {
@@ -55,13 +88,13 @@ public class DialogPanel extends javax.swing.JPanel {
                 .addGap(33, 33, 33))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jDialog, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblTexto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jDialog, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblTexto, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jOpcion1)
@@ -76,8 +109,8 @@ public class DialogPanel extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jDialog;
     private javax.swing.JButton jOpcion1;
     private javax.swing.JButton jOpcion2;
+    private javax.swing.JLabel lblTexto;
     // End of variables declaration//GEN-END:variables
 }
