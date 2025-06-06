@@ -8,7 +8,6 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.util.Map;
-import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -20,10 +19,6 @@ import javax.swing.JOptionPane;
  * @author Rodrigo
  */
 public class DialogPanel extends javax.swing.JPanel {
-    private javax.swing.JLabel lblTitulo;
-    private javax.swing.JTextArea txtContenido;
-    private javax.swing.JPanel pnlOpciones;
-    private javax.swing.JScrollPane scrollTexto;
     /**
      * Creates new form CharacterPanel
      * @param dialogue
@@ -31,41 +26,19 @@ public class DialogPanel extends javax.swing.JPanel {
      */
     public DialogPanel(Dialogo dialogue/*, Map<String, Mision> misiones*/) {
         initComponents();
-        //initCustomComponents();  // Método alternativo a initComponents()
         setDatos(dialogue);
         setBorder(javax.swing.BorderFactory.createTitledBorder("Diálogo"));
-        //setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-        //add(new JLabel("Nombre: " + (dialogue.name != null ? dialogue.name : "undefined")));
-        //add(new JLabel("Texto: " + (dialogue.text != null ? dialogue.text : "undefined")));
-
-        /*for (Map.Entry<String, String> opcion : dialogue.options.entrySet()) {
-            String label = opcion.getKey();
-            String misionReferida = opcion.getValue();
-
-            JButton boton = new JButton(label);
-            boton.addActionListener(e -> {
-                if (misiones.containsKey(misionReferida)) {
-                    Mision mision = misiones.get(misionReferida);
-                    MissionPanel mp = new MissionPanel(mision);
-                    VistaCompleta vc = new VistaCompleta();
-                    vc.getPanelContenedor().add(mp);
-                    vc.pack();
-                    vc.setVisible(true);
-                } else {
-                    JOptionPane.showMessageDialog(this, "La misión '" + misionReferida + "' no existe.", "Error", JOptionPane.ERROR_MESSAGE);
-                }
-            });
-
-            add(boton);
-        }*/
         
     }
 
     public void setDatos(Dialogo dialogo) {
-        lblTitulo.setText(dialogo.name);
-        txtContenido.setText(dialogo.text);
+        //lblTexto.setText(dialogo.name);
+        lblTexto.setText(dialogo.text);
         
-        pnlOpciones.removeAll();
+        jPanel1.setLayout(new javax.swing.BoxLayout(jPanel1, javax.swing.BoxLayout.Y_AXIS));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Opciones"));
+        
+        jPanel1.removeAll();
         for (Map.Entry<String, String> entry : dialogo.options.entrySet()) {
             JButton btn = new JButton(entry.getKey());
             btn.setAlignmentX(Component.LEFT_ALIGNMENT);
@@ -76,10 +49,22 @@ public class DialogPanel extends javax.swing.JPanel {
             
             if (entry.getValue() != null) {
                 btn.setToolTipText("Conduce a: " + entry.getValue());
+                btn.addActionListener(e -> {
+                    // Buscar la misión correspondiente
+                    for (Mision m : MainFrame.misiones) {
+                        if (m.name.equals(entry.getValue())) {
+                            MissionPanel mp = new MissionPanel(m);
+                            JOptionPane.showMessageDialog(this, mp, 
+                                "Misión: " + m.name, 
+                                JOptionPane.PLAIN_MESSAGE);
+                            break;
+                        }
+                    }
+                });
             }
             
-            pnlOpciones.add(btn);
-            pnlOpciones.add(Box.createRigidArea(new Dimension(0, 5)));  // Espaciado
+            jPanel1.add(btn);
+            jPanel1.add(Box.createRigidArea(new Dimension(0, 5)));  // Espaciado
         }
         
         revalidate();

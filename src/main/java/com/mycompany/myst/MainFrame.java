@@ -28,7 +28,7 @@ import javax.swing.JOptionPane;
  * @author Rodrigo
  */
 public class MainFrame extends javax.swing.JFrame {
-
+    static ArrayList<Mision> misiones = new ArrayList<>();
     /**
      * Creates new form MainFrame
      */
@@ -121,7 +121,7 @@ public class MainFrame extends javax.swing.JFrame {
 
                 ArrayList<Personaje> personajes = new ArrayList<>();
                 ArrayList<Enemigo> enemigos = new ArrayList<>();
-                ArrayList<Mision> misiones = new ArrayList<>();
+                //ArrayList<Mision> misiones = new ArrayList<>();
                 ArrayList<Dialogo> dialogos = new ArrayList<>();
                 Set<String> misionesReferenciadas = new HashSet<>();
                 /*for (Dialogo d : listaDialogos) {
