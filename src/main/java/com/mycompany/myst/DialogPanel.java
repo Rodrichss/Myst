@@ -4,7 +4,12 @@
  */
 package com.mycompany.myst;
 
+import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.GridBagConstraints;
 import java.util.Map;
+import javax.swing.BorderFactory;
+import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -15,17 +20,23 @@ import javax.swing.JOptionPane;
  * @author Rodrigo
  */
 public class DialogPanel extends javax.swing.JPanel {
-    
+    private javax.swing.JLabel lblTitulo;
+    private javax.swing.JTextArea txtContenido;
+    private javax.swing.JPanel pnlOpciones;
+    private javax.swing.JScrollPane scrollTexto;
     /**
      * Creates new form CharacterPanel
      * @param dialogue
      * @param misiones
      */
-    public DialogPanel(Dialogo dialogue, Map<String, Mision> misiones) {
-        //initComponents();
+    public DialogPanel(Dialogo dialogue/*, Map<String, Mision> misiones*/) {
+        initComponents();
+        //initCustomComponents();  // Método alternativo a initComponents()
+        setDatos(dialogue);
+        setBorder(javax.swing.BorderFactory.createTitledBorder("Diálogo"));
         //setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-        add(new JLabel("Nombre: " + (dialogue.name != null ? dialogue.name : "undefined")));
-        add(new JLabel("Texto: " + (dialogue.text != null ? dialogue.text : "undefined")));
+        //add(new JLabel("Nombre: " + (dialogue.name != null ? dialogue.name : "undefined")));
+        //add(new JLabel("Texto: " + (dialogue.text != null ? dialogue.text : "undefined")));
 
         /*for (Map.Entry<String, String> opcion : dialogue.options.entrySet()) {
             String label = opcion.getKey();
@@ -50,6 +61,31 @@ public class DialogPanel extends javax.swing.JPanel {
         
     }
 
+    public void setDatos(Dialogo dialogo) {
+        lblTitulo.setText(dialogo.name);
+        txtContenido.setText(dialogo.text);
+        
+        pnlOpciones.removeAll();
+        for (Map.Entry<String, String> entry : dialogo.options.entrySet()) {
+            JButton btn = new JButton(entry.getKey());
+            btn.setAlignmentX(Component.LEFT_ALIGNMENT);
+            
+            // Estilo consistente con NetBeans
+            btn.setFont(new java.awt.Font("Segoe UI", 0, 12));
+            btn.setMargin(new java.awt.Insets(2, 5, 2, 5));
+            
+            if (entry.getValue() != null) {
+                btn.setToolTipText("Conduce a: " + entry.getValue());
+            }
+            
+            pnlOpciones.add(btn);
+            pnlOpciones.add(Box.createRigidArea(new Dimension(0, 5)));  // Espaciado
+        }
+        
+        revalidate();
+        repaint();
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -60,35 +96,32 @@ public class DialogPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         lblTexto = new javax.swing.JLabel();
-        jOpcion1 = new javax.swing.JButton();
-        jOpcion2 = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
 
         setBorder(javax.swing.BorderFactory.createTitledBorder("Dialog"));
 
         lblTexto.setText("Gracias por salvar a nuestro pueblo!!");
 
-        jOpcion1.setText("Opción 1");
-        jOpcion1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jOpcion1ActionPerformed(evt);
-            }
-        });
-
-        jOpcion2.setText("Opción 2");
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 261, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(38, 38, 38)
-                .addComponent(jOpcion1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
-                .addComponent(jOpcion2)
-                .addGap(33, 33, 33))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addComponent(lblTexto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(75, 75, 75))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -96,21 +129,14 @@ public class DialogPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(lblTexto, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jOpcion1)
-                    .addComponent(jOpcion2))
-                .addContainerGap(43, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jOpcion1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jOpcion1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jOpcion1ActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jOpcion1;
-    private javax.swing.JButton jOpcion2;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblTexto;
     // End of variables declaration//GEN-END:variables
 }

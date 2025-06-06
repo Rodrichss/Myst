@@ -34,6 +34,8 @@ public class MainFrame extends javax.swing.JFrame {
      */
     public MainFrame() {
         initComponents();
+        TextLineNumber lineNumber = new TextLineNumber(jInput);
+        jScrollPane1.setRowHeaderView(lineNumber);
     }
 
     /**
@@ -120,6 +122,7 @@ public class MainFrame extends javax.swing.JFrame {
                 ArrayList<Personaje> personajes = new ArrayList<>();
                 ArrayList<Enemigo> enemigos = new ArrayList<>();
                 ArrayList<Mision> misiones = new ArrayList<>();
+                ArrayList<Dialogo> dialogos = new ArrayList<>();
                 Set<String> misionesReferenciadas = new HashSet<>();
                 /*for (Dialogo d : listaDialogos) {
                     misionesReferenciadas.addAll(d.options.values());
@@ -138,12 +141,13 @@ public class MainFrame extends javax.swing.JFrame {
                             case CHARACTER -> personajes.add(extraerPersonaje(lexer));
                             case ENEMY -> enemigos.add(extraerEnemigo(lexer));
                             case QUEST -> misiones.add(extraerMision(lexer));
+                            case DIALOGUE -> dialogos.add(extraerDialogo(lexer));
+                            
                             default -> { 
                                 mensajeError = "Error en la línea " + (token.getLine() + 1) + ": Token inesperado '" + token.getLexeme() + "'";
-                                JOptionPane.showMessageDialog(this, "Error en la línea " + (token.getLine()+1), 
-                                        "Error al analizar el código.", JOptionPane.ERROR_MESSAGE);
+                                /*JOptionPane.showMessageDialog(this, "Error en la línea " + (token.getLine()+1), 
+                                        "Error al analizar el código.", JOptionPane.ERROR_MESSAGE);*/
                                 error = true;
-                                break;
                             }
                         }
                     } catch(Exception e){
@@ -171,6 +175,11 @@ public class MainFrame extends javax.swing.JFrame {
                     for (Mision m : misiones) {
                     MissionPanel missionPanel = new MissionPanel(m);
                     vista.getPanelContenedor().add(missionPanel);
+                    }
+                    
+                    for(Dialogo dialogo : dialogos) {
+                        DialogPanel dialogPanel = new DialogPanel(dialogo);
+                        vista.getPanelContenedor().add(dialogPanel);
                     }
                     
                     vista.pack();
@@ -348,48 +357,34 @@ public class MainFrame extends javax.swing.JFrame {
     
     public Dialogo extraerDialogo(Lexer lexer) throws IOException {
         Dialogo dialogo = new Dialogo();
-        
-        Token token = lexer.next_token();
+        Token token = lexer.next_token(); // Nombre del diálogo (ej: "dialogue "Intro"")
+
         if (token.getTokenType() == constantes.STRING) {
-            dialogo.name = (token.getLexeme().replace("\"", ""));
+            dialogo.name = token.getLexeme().replace("\"", "");
         }
 
-        token = lexer.next_token();
+        token = lexer.next_token(); // Espera '{'
         if (!token.getLexeme().equals("{")) {
             throw new IOException("Se esperaba '{' en línea " + token.getLine());
         }
-        
-         /*dialogo.options = new LinkedHashMap<>();
 
         while ((token = lexer.next_token()) != null && !token.getLexeme().equals("}")) {
             switch (token.getTokenType()) {
                 case TEXT:
-                    dialogo.text = leerValor(lexer).replace("\"", "");
+                    dialogo.text = leerValor(lexer).replace("\"", ""); // Texto del diálogo
                     break;
                 case OPTION:
-                    String optionText = leerValor(lexer).replace("\"", "");
-                    
-                    token = lexer.next_token();  // Ver si viene ->
+                    String opcion = leerValor(lexer).replace("\"", ""); // Opción (ej: "Aceptar")
+                    token = lexer.next_token();
                     if (token.getLexeme().equals("->")) {
-                        // Leer misión vinculada
-                        String missionName = leerValor(lexer).replace("\"", "");
-                        dialogo.options.put(optionText, missionName);
+                        String mision = leerValor(lexer).replace("\"", ""); // Misión vinculada
+                        dialogo.options.put(opcion, mision);
                     } else {
-                        // Opción sin misión (simple)
-                        dialogo.options.put(optionText, null);
+                        dialogo.options.put(opcion, null); // Opción sin misión
                     }
                     break;
             }
         }
-        
-        System.out.println("=== Diálogo extraído ===");
-        System.out.println("Nombre: " + dialogo.name);
-        System.out.println("Texto: " + dialogo.text);
-        System.out.println("Opciones:");
-        for (Map.Entry<String, String> entry : dialogo.options.entrySet()) {
-            System.out.println("- Opción: " + entry.getKey() + " -> " + entry.getValue());
-        }
-        */
         return dialogo;
     }
 
