@@ -36,6 +36,7 @@ public class MainFrame extends javax.swing.JFrame {
         initComponents();
         TextLineNumber lineNumber = new TextLineNumber(jInput);
         jScrollPane1.setRowHeaderView(lineNumber);
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -108,6 +109,7 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void jExecuteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jExecuteButtonActionPerformed
         // TODO add your handling code here:
+        MainFrame.misiones.clear();
         String entrada = jInput.getText();
         
         if (entrada.isEmpty()) {
@@ -123,14 +125,7 @@ public class MainFrame extends javax.swing.JFrame {
                 ArrayList<Enemigo> enemigos = new ArrayList<>();
                 //ArrayList<Mision> misiones = new ArrayList<>();
                 ArrayList<Dialogo> dialogos = new ArrayList<>();
-                Set<String> misionesReferenciadas = new HashSet<>();
-                /*for (Dialogo d : listaDialogos) {
-                    misionesReferenciadas.addAll(d.options.values());
-                }*/
-
-                List<Mision> misionesIndependientes = misiones.stream()
-                    .filter(m -> !misionesReferenciadas.contains(m.name))
-                    .collect(Collectors.toList());
+                
                 
                 boolean error = false;
                 String mensajeError = "";
@@ -162,6 +157,15 @@ public class MainFrame extends javax.swing.JFrame {
                 }else{
                     VistaCompleta vista = new VistaCompleta();
                     
+                    Set<String> misionesVinculadas = new HashSet<>();
+                    for (Dialogo dialogo : dialogos) {
+                        misionesVinculadas.addAll(dialogo.options.values());
+                    }
+
+                    List<Mision> misionesAMostrar = misiones.stream()
+                        .filter(m -> !misionesVinculadas.contains(m.name))
+                        .collect(Collectors.toList());
+                    
                     for (Personaje p : personajes) {
                     CharacterPanel characterPanel = new CharacterPanel(p);
                     vista.getPanelContenedor().add(characterPanel);
@@ -172,7 +176,7 @@ public class MainFrame extends javax.swing.JFrame {
                     vista.getPanelContenedor().add(enemyPanel);
                     }
                     
-                    for (Mision m : misiones) {
+                    for (Mision m : misionesAMostrar) {
                     MissionPanel missionPanel = new MissionPanel(m);
                     vista.getPanelContenedor().add(missionPanel);
                     }
@@ -376,11 +380,18 @@ public class MainFrame extends javax.swing.JFrame {
                 case OPTION:
                     String opcion = leerValor(lexer).replace("\"", ""); // Opción (ej: "Aceptar")
                     token = lexer.next_token();
-                    if (token.getLexeme().equals("->")) {
-                        String mision = leerValor(lexer).replace("\"", ""); // Misión vinculada
-                        dialogo.options.put(opcion, mision);
+                    if (token!=null & token.getLexeme().equals("->")) {
+                        token = lexer.next_token();
+                        if (token.getTokenType() == constantes.STRING) {
+                        dialogo.options.put(opcion, token.getLexeme().replace("\"", ""));
+                        }else{
+                            dialogo.options.put(opcion, "undefined");
+                        }
                     } else {
-                        dialogo.options.put(opcion, null); // Opción sin misión
+                        dialogo.options.put(opcion, "undefined"); // Opción sin misión
+                        if (!token.getLexeme().equals("}")) {
+                        lexer.yypushback(token.getLexeme().length());
+                        }
                     }
                     break;
             }
