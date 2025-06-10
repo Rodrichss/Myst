@@ -372,7 +372,8 @@ public class MainFrame extends javax.swing.JFrame {
             throw new IOException("Se esperaba '{' en línea " + token.getLine());
         }
 
-        while ((token = lexer.next_token()) != null && !token.getLexeme().equals("}")) {
+        while ((token = lexer.next_token()) != null && !"}".equals(token.getLexeme())) {
+            if(token.getTokenType() == null) continue;
             switch (token.getTokenType()) {
                 case TEXT:
                     dialogo.text = leerValor(lexer).replace("\"", ""); // Texto del diálogo
@@ -380,16 +381,16 @@ public class MainFrame extends javax.swing.JFrame {
                 case OPTION:
                     String opcion = leerValor(lexer).replace("\"", ""); // Opción (ej: "Aceptar")
                     token = lexer.next_token();
-                    if (token!=null & token.getLexeme().equals("->")) {
+                    if (token!=null && "->".equals(token.getLexeme()) ) {
                         token = lexer.next_token();
-                        if (token.getTokenType() == constantes.STRING) {
+                        if (token != null && token.getTokenType() == constantes.STRING) {
                         dialogo.options.put(opcion, token.getLexeme().replace("\"", ""));
                         }else{
                             dialogo.options.put(opcion, "undefined");
                         }
                     } else {
                         dialogo.options.put(opcion, "undefined"); // Opción sin misión
-                        if (!token.getLexeme().equals("}")) {
+                        if (token != null && "}".equals(token.getLexeme())) {
                         lexer.yypushback(token.getLexeme().length());
                         }
                     }
@@ -401,13 +402,13 @@ public class MainFrame extends javax.swing.JFrame {
 
     private String leerValor(Lexer lexer) throws IOException {
         Token token = lexer.next_token(); // Esperamos ':'
-        if (!token.getLexeme().equals(":")) {
+        if (token==null || !":".equals(token.getLexeme())) {
             System.err.println("Error: se esperaba ':'");
             return "undefined";
         }
 
         token = lexer.next_token(); // Esperamos el valor
-        return token.getLexeme();
+        return token != null ? token.getLexeme() : "";
     }
 
     
