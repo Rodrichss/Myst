@@ -362,6 +362,7 @@ public class MainFrame extends javax.swing.JFrame {
     public Dialogo extraerDialogo(Lexer lexer) throws IOException {
         Dialogo dialogo = new Dialogo();
         Token token = lexer.next_token(); // Nombre del diálogo (ej: "dialogue "Intro"")
+        Token siguienteToken = null;
 
         if (token.getTokenType() == constantes.STRING) {
             dialogo.name = token.getLexeme().replace("\"", "");
@@ -372,7 +373,8 @@ public class MainFrame extends javax.swing.JFrame {
             throw new IOException("Se esperaba '{' en línea " + token.getLine());
         }
 
-        while ((token = lexer.next_token()) != null && !"}".equals(token.getLexeme())) {
+        while ((token = (siguienteToken != null ? siguienteToken : lexer.next_token())) != null && !"}".equals(token.getLexeme())) {
+            siguienteToken = null; // Limpiar lookahead después de usarlo
             if(token.getTokenType() == null) continue;
             switch (token.getTokenType()) {
                 case TEXT:
@@ -380,19 +382,19 @@ public class MainFrame extends javax.swing.JFrame {
                     break;
                 case OPTION:
                     String opcion = leerValor(lexer).replace("\"", ""); // Opción (ej: "Aceptar")
-                    token = lexer.next_token();
-                    if (token!=null && "->".equals(token.getLexeme()) ) {
-                        token = lexer.next_token();
-                        if (token != null && token.getTokenType() == constantes.STRING) {
-                        dialogo.options.put(opcion, token.getLexeme().replace("\"", ""));
+                    Token posibleFlecha = lexer.next_token();
+                    //token = lexer.next_token();
+                    if (posibleFlecha!=null && "->".equals(posibleFlecha.getLexeme()) ) {
+                        Token nombreMision = lexer.next_token();
+                        //token = lexer.next_token();
+                        if (nombreMision != null && nombreMision.getTokenType() == constantes.STRING) {
+                        dialogo.options.put(opcion, nombreMision.getLexeme().replace("\"", ""));
                         }else{
                             dialogo.options.put(opcion, "undefined");
                         }
                     } else {
                         dialogo.options.put(opcion, "undefined"); // Opción sin misión
-                        if (token != null && "}".equals(token.getLexeme())) {
-                        lexer.yypushback(token.getLexeme().length());
-                        }
+                        siguienteToken = posibleFlecha;
                     }
                     break;
             }
