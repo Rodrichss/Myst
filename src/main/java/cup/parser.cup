@@ -1,109 +1,70 @@
-// =======================
-// Sección 1: Encabezado
-// =======================
 package com.mycompany.myst;
 
 import java_cup.runtime.*;
-import com.mycompany.myst.*;
+import java.util.*;
 
-// =======================
-// Sección 2: Código del parser
-// =======================
 parser code {:
-    public void syntax_error(Symbol s) {
-        System.err.println("Error de sintaxis en la línea " + (s.left + 1) + ": token inesperado '" + s.value + "'");
+    // Método para reportar errores
+    public void report_error(String message, Object info) {
+        StringBuilder m = new StringBuilder("Error sintáctico");
+        
+        if (info instanceof Symbol) {
+            Symbol s = (Symbol)info;
+            Token t = (Token)s.value;
+            
+            if (s.left >= 0) {
+                m.append(" en línea ").append(t.getLine())
+                 .append(", columna ").append(t.getColumn());
+            }
+        }
+        
+        m.append(": ").append(message);
+        System.err.println(m);
     }
-:}
-
-// =======================
-// Sección 3: Tokens (terminales) del lexer
-// =======================
-terminal constantes CHARACTER, ENEMY, QUEST, DIALOGUE;
-terminal constantes HP, MP, ATTACK, DEFENSE, LOOT, REWARD, GOAL;
-terminal constantes SKILL, DAMAGE, MP_COST, GOLD, OPTION, START, END;
-terminal constantes ARROW, COLON, LLO, LLC, STRING, NUMBER, ID;
-//terminal EOF;
-
-// =======================
-// Sección 4: No terminales
-// =======================
-non terminal program, declarations, declaration;
-non terminal character_def, quest_def, dialogue_def;
-non terminal body, attributes, attribute, value;
-
-// =======================
-// Sección 5: Punto de entrada
-// =======================
-start with program;
-
-// =======================
-// Sección 6: Reglas de producción
-// =======================
-
-//program ::= declarations EOF
-program ::= declarations
-{: 
-    TreePrinter.enter("program");
-    TreePrinter.exit();
+	
+	private Token getStackToken(int pos) {
+        java.util.Stack stack = getStack();
+        Symbol sym = (Symbol)stack.elementAt(stack.size()-pos);
+        return (Token)sym.value;
+    }
 :};
 
-declarations ::= /* vacío */
-               | declarations declaration
-               ;
+/* Terminales en el orden exacto para generar Sym.java como deseas */
+terminal 
+    
+    CHARACTER, ENEMY, QUEST, DIALOGUE, HP, MP, ATTACK, DEFENSE,
+    LOOT, REWARD, GOAL, SKILL, DAMAGE, MP_COST, GOLD, OPTION,
+    START, END, ARROW, COLON, LLO, LLC, STRING, NUMBER, ID, TEXT;
 
-declaration ::= character_def 
-              | quest_def 
-              | dialogue_def
-              ;
+/* No terminales */
+non terminal Program, CharacterBlock, EnemyBlock, Statement, attributes;
 
-character_def ::= CHARACTER ID COLON LLO body LLC
-{: 
-    TreePrinter.enter("character_def: " + ((Symbol)$2).value);
-    TreePrinter.exit();
-:};
+/* Precedencias */
+precedence left COLON;
+precedence left ARROW;
 
-quest_def ::= QUEST ID COLON LLO body LLC
-{: 
-    TreePrinter.enter("quest_def: " + ((Symbol)$2).value);
-    TreePrinter.exit();
-:};
+/* Inicio de la gramática */
+start with Program;
 
-dialogue_def ::= DIALOGUE ID COLON STRING
-{: 
-    TreePrinter.enter("dialogue_def: " + ((Symbol)$2).value);
-    TreePrinter.print("text: " + ((Symbol)$4).value);
-    TreePrinter.exit();
-:};
+/* Reglas gramaticales */
+Program ::= 
+      CharacterBlock 
+    | EnemyBlock
+    | Program CharacterBlock
+    | Program EnemyBlock
+;
 
-body ::= attributes
-{: 
-    TreePrinter.enter("body");
-    TreePrinter.exit();
-:};
+CharacterBlock ::= 
+    CHARACTER ID COLON LLO attributes LLC
+    {: 
+        Token idToken = getStackToken(2); // Para $2
+        System.out.println("ID: " + idToken.getLexeme());
+    :}
+;
 
-attributes ::= /* vacío */
-             | attributes attribute
-             ;
-
-attribute ::= HP COLON value
-            | MP COLON value
-            | ATTACK COLON value
-            | DEFENSE COLON value
-            | LOOT COLON value
-            | REWARD COLON value
-            | GOAL COLON value
-            | SKILL COLON value
-            | DAMAGE COLON value
-            | MP_COST COLON value
-            | GOLD COLON value
-{: 
-    TreePrinter.enter("attribute: " + ((Symbol)$1).sym);
-    TreePrinter.exit();
-:};
-
-value ::= STRING
-        | NUMBER
-        | ID
-{: 
-    TreePrinter.print("value: " + ((Symbol)$1).value);
-:};
+attributes ::= 
+      HP COLON NUMBER 
+    | MP COLON NUMBER 
+    | attributes HP COLON NUMBER 
+    | attributes MP COLON NUMBER
+;
